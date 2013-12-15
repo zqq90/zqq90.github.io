@@ -29,7 +29,11 @@ Webit Script 先以提供对JFinal、Jodd madvoc、SpringMVC、Struts、Servlet/
 
 ## 良好的性能
 Webit Script现在仅提供**解释执行**，很多其他优秀的模板引擎往往是采用**编译执行**，用灵活性换取高性能。然而实际测试，Webit Script 和其中性能最优秀的相比，是其性能的50%-75%（2013年12月12日数据显示）。同时，编译执行不得不依赖JDK或者其他第三方类库，因为环境的变更，会产生一些差异。
-> 关于性能测试，请移步另一个开源项目：zqq90/ebm
+
+> 关于性能测试，请移步另一个开源项目：[zqq90/ebm][zqq90_ebm]
 
 ## 它还是一个脚本语言
 Webit Script和其他模板引擎的一点不同还在于：它允许你进行set操作，例如： `user.name = "my new name"; `，这给模板开发者带来更大的发挥空间.
+
+
+[zqq90_ebm]: https://github.com/zqq90/ebm

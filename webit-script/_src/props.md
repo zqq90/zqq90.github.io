@@ -1,6 +1,7 @@
 ## 哪些组件可以配置？
 Webit script 采用IoC的机制管理组件，也就是说只要是提供了setter的组件，随处都可以配置。当前现在支持属性值自动转换为以下类型：String, class, int/Integer, boolean/Boolean，以及他们的数组形式。
 例如：
+
 ~~~~~
 # 格式为 key = value
 # 设置输出编码 Engine.setEncoding(String)
