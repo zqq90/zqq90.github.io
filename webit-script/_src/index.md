@@ -1,5 +1,5 @@
 ## Webit Script 读音
-> Webit Script /w?b?t skr?pt/, 或者拆成 we bit script
+> Webit Script /wɛbɪt skrɪpt/, 或者拆成 we bit script
 
 ## 这是一个开源的Java模板引擎
 Webit Script 是一个简单灵活自由开放的开源的模板引擎，基于Java开发，支持Java5 及以上版本，采用BSD开源协议。

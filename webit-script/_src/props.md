@@ -79,7 +79,7 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 + 同时会附加 classpath 下的`webit-script-default.props`和`webit-script-default.props-web`
 
 ## 常用配置一览
-<table><tbody>
+<table class="table table-striped table-bordered "><tbody>
 <tr>
 	<td>DEFAULT_ENCODING</td>
 	<td>默认编码</td>
