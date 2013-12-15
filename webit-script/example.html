@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Webit Script</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/docs.css" media="screen"/>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<a href="index.html" class="navbar-brand">Webit Script</a>
+</div>
+<div id="navbar-main" class="navbar-collapse">
+<ul class="nav navbar-nav">
+<li><a href="index.html">简介</a></li>
+<li><a href="download.html">下载</a></li>
+<li><a href="example.html">示例</a></li>
+<li><a href="syntax.html">语法</a></li>
+<li><a href="props.html">配置</a></li>
+<li><a href="faq.html">常见问题</a></li>
+<li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
+</div>
+</div>
+</div>
+<div class="container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#hello-word">Hello word</a></li><li><a href="#api">API直接调用</a></li><li><a href="#mvc">MVC视图集成</a></li></ul></div><div class="ws-doc-body" ><h2 id="hello-word">Hello word</h2>
+
+<pre class="brush: javascript;">Hello Webit Script!
+&lt;%
+var books;
+{
+    //遍历集合
+    for(book : books){
+%&gt;
+${for.iter.index}.《${book.name}》 ￥${book.price}
+&lt;%
+    }
+}
+{
+    //自定义函数
+    var func = function(a, b){
+        return a + b + arguments[3];
+    };
+    echo func("a", "b", "c");
+    echo '\n';
+}
+{
+    //声明Map
+    var map = {
+        1: 1,
+        "key2": "value2",
+        3: 2 + 1
+    };
+    //map 读写
+    map[5] = 2 + 3;
+    //map 遍历
+    for(key, value : map){
+        //输出
+        echo key + ":" +value + "\n";
+    }
+}
+%&gt;
+</pre>
+
+<p>更多实例可见:<a href="https://github.com/zqq90/webit-script/tree/master/webit-script/src/test/resources/webit/script/test/tmpls">测试模板</a></p>
+
+<h2 id="api">API直接调用</h2>
+<pre class="brush: java;">// engine 并不会被缓存, 请根据需要自行实现 Engine的单例模式
+Engine engine = Engine.createEngine("/webit-script-config.props", extraSettingsMap);
+
+// template 已缓存, 线程安全, 并自动检测模板源是否被更新
+Template template = engine.getTemplate("/your/template/path/filename.ext");
+
+template.merge(parametersMap, outputStream); 
+//template.merge(parametersMap, writer);
+</pre>
+
+<h2 id="mvc">MVC视图集成</h2>
+<ul>
+  <li>Jodd Madvoc</li>
+  <li>JFinal</li>
+  <li>Spring MVC</li>
+  <li>Struts</li>
+  <li>Servlet &amp; Filter</li>
+</ul>
+
+<p><a href="https://github.com/zqq90/webitscript-mvc-demo">示例代码</a></p>
+
+</div>
+<footer>
+版权所有 2012-2013 Webit团队.
+</footer>
+</div>
+<script type="text/javascript" src="js/application.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+</body>
+</html>

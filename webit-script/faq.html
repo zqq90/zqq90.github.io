@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Webit Script</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/docs.css" media="screen"/>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<a href="index.html" class="navbar-brand">Webit Script</a>
+</div>
+<div id="navbar-main" class="navbar-collapse">
+<ul class="nav navbar-nav">
+<li><a href="index.html">简介</a></li>
+<li><a href="download.html">下载</a></li>
+<li><a href="example.html">示例</a></li>
+<li><a href="syntax.html">语法</a></li>
+<li><a href="props.html">配置</a></li>
+<li><a href="faq.html">常见问题</a></li>
+<li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
+</div>
+</div>
+</div>
+<div class="container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">1. 如何获取帮助？</a></li><li><a href="#section-1">2. 为什么不做编译执行？</a></li><li><a href="#layout">3. 如何实现layout特性？</a></li></ul></div><div class="ws-doc-body" ><h3 id="section">1. 如何获取帮助？</h3>
+
+<blockquote>
+  <p>Webit Script 官方QQ群: 302505483 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=7be9d8a59a8533b7c2837bdc22295b4b47c65384eda323971cf5f3b9943ad9db"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="QQ群: 302505483" title="QQ群: 302505483" /></a></p>
+</blockquote>
+
+<h3 id="section-1">2. 为什么不做编译执行？</h3>
+<blockquote>
+  <p>1.现在使用编译执行，性能已经很理想了。大约是解释执行的50%-75%。
+2.Webit Script把功能放在第一位，其次才是性能。
+3.解释执行、编译执行很难保持预期结果的完全一致，而且编译执行更容易产生Bug。</p>
+</blockquote>
+
+<h3 id="layout">3. 如何实现layout特性？</h3>
+<blockquote>
+  <p>简单三步：</p>
+</blockquote>
+
+<blockquote>
+  <p>1.在公共模板定义一个 layout 函数</p>
+</blockquote>
+
+<pre class="brush: js;">&lt;%
+var layout=function(nested){
+%&gt;
+&lt;html&gt;
+    &lt;body&gt;
+	&lt;% nested(); %&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+&lt;%
+}; //end layout
+%&gt;
+</pre>
+<blockquote>
+  <p>2.使用import导入函数layout</p>
+</blockquote>
+
+<blockquote>
+  <p>3.最后，使用layout，传入一个匿名函数作为参数</p>
+</blockquote>
+
+<pre class="brush: js;">&lt;% layout(function{ %&gt;
+Hello Webit!
+&lt;% }); %&gt;
+</pre>
+<blockquote>
+  <p>技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
+</blockquote>
+
+</div>
+<footer>
+版权所有 2012-2013 Webit团队.
+</footer>
+</div>
+<script type="text/javascript" src="js/application.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+</body>
+</html>
