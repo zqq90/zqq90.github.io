@@ -25,7 +25,7 @@
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">哪些组件可以配置？</a></li><li><a href="#section-1">获取引擎实例</a></li><li><a href="#section-3">一段配置文件节选</a></li><li><a href="#section-4">认识配置文件</a></li><li><a href="#webenginemanager">WebEngineManager的配置</a></li><li><a href="#section-5">常用配置一览</a></li><li><a href="#section-6">常用配置说明</a></li><li><a href="#native--">Native安全管理–黑白名单</a></li></ul></div><div class="ws-doc-body" ><h2 id="section">哪些组件可以配置？</h2>
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">哪些组件可以配置？</a></li><li><a href="#section-1">获取引擎实例</a></li><li><a href="#section-3">一段配置文件节选</a></li><li><a href="#section-4">认识配置文件</a></li><li><a href="#webenginemanager">WebEngineManager的配置</a></li><li><a href="#section-5">常用配置一览</a></li><li><a href="#section-6">常用配置说明</a></li><li><a href="#native--">Native安全管理–黑白名单</a></li><li><a href="#textstatment">TextStatment生成器</a></li></ul></div><div class="ws-doc-body" ><h2 id="section">哪些组件可以配置？</h2>
 <p>Webit script 采用IoC的机制管理组件，也就是说只要是提供了setter的组件，随处都可以配置。当前现在支持属性值自动转换为以下类型：String, class, int/Integer, boolean/Boolean，以及他们的数组形式。
 例如：</p>
 
@@ -131,10 +131,6 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>资源加载器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.resolvers</td>
-	<td>bean属性解释器【列表】</td>
-</tr>
-<tr>
 	<td>webit.script.Engine.enableAsmNative</td>
 	<td>是否允许ASM优化Native</td>
 </tr>
@@ -145,6 +141,14 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 <tr>
 	<td>webit.script.Engine.trimCodeBlockBlankLine</td>
 	<td>是否删除指令所占行</td>
+</tr>
+<tr>
+	<td>webit.script.Engine.resolvers</td>
+	<td>bean属性解释器【列表】</td>
+</tr>
+<tr>
+	<td>webit.script.Engine.textStatmentFactoryClass</td>
+	<td>TextStatment生成器</td>
 </tr>
 <tr>
 	<td>webit.script.Engine.appendLostFileNameExtension</td>
@@ -243,6 +247,12 @@ list='''
 - com.cat.tom
 '''
 </pre>
+
+<h2 id="textstatment">TextStatment生成器</h2>
+
+<blockquote>
+  <p>//TODO:</p>
+</blockquote>
 
 </div>
 <footer>

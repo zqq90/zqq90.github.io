@@ -94,10 +94,6 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>资源加载器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.resolvers</td>
-	<td>bean属性解释器【列表】</td>
-</tr>
-<tr>
 	<td>webit.script.Engine.enableAsmNative</td>
 	<td>是否允许ASM优化Native</td>
 </tr>
@@ -108,6 +104,14 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 <tr>
 	<td>webit.script.Engine.trimCodeBlockBlankLine</td>
 	<td>是否删除指令所占行</td>
+</tr>
+<tr>
+	<td>webit.script.Engine.resolvers</td>
+	<td>bean属性解释器【列表】</td>
+</tr>
+<tr>
+	<td>webit.script.Engine.textStatmentFactoryClass</td>
+	<td>TextStatment生成器</td>
 </tr>
 <tr>
 	<td>webit.script.Engine.appendLostFileNameExtension</td>
@@ -203,6 +207,9 @@ list='''
 '''
 ~~~~~
 
+## TextStatment生成器
+
+> //TODO:
 
 [default_config]: https://github.com/zqq90/webit-script/blob/master/webit-script/src/main/resources/webit-script-default.props
 [jodd_props_doc]: http://jodd.org/doc/props.html
