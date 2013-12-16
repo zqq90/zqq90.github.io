@@ -35,7 +35,7 @@ throw  try  catch  finally
 ### 操作符
 > 与Java 保持一致，顺序按优先级从高到低
 
-~~~~~javascript
+~~~~~java
 [] . () @
 =>
 !  ~  ++  --  – (取负)
@@ -264,13 +264,14 @@ var new_list2 = native new ArrayList(int); // 导入 构造函数
 ### 调用
 
 + 可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身
-+ 缺少的参数 自动 null 填充, *为了良好的设计 不建议使用缺少函数自动填充*
++ 缺少的参数将用null补齐,
 + 可使用@ 将第一个参数 外置
 
 ~~~~~javascript
 func(arg1, arg2);
 //等同于
 arg1@func(arg2);
+
 list_add(list, item);
 //等同于
 list@list_add(item);
@@ -280,7 +281,7 @@ list@list_add(item);
 
 + 作用: 将指定 范围 产生的输出流 重定向到 指定变量
 + 意义: 可以延后输出
-+ **使用对象: 1. 代码段；  2. 函数调用**
++ **使用对象: 1. 代码段；2. 函数调用**
 + 数据格式: 使用OutputStream 时, 为 byte[] ; 使用 Writer 时, 为String.
 
 ~~~~~javascript
@@ -440,7 +441,7 @@ do{
 ### Switch
 
 + 支持普通 Object, 包括 String 
-+ 使用  Object.equls() 判断是否相等
++ 使用 `Object.equls()` 判断是否相等
 + 需要 break, 否则无条件继续执行下一个标签的句柄
 + 每个case 命名空间独立
 
@@ -460,9 +461,9 @@ switch(a){
 }
 ~~~~~
 
-### break continue
+### break & continue
 
-+ **支持 label, 直接操作该循环体 或 switch**
+> 支持 label
 
 ~~~~~javascript
 //break continue

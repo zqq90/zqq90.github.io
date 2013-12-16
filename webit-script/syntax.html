@@ -25,7 +25,7 @@
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-19">函数</a></li><li><a href="#section-21">调用</a></li><li><a href="#section-22">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-23">关于条件判断的三种情况</a></li><li><a href="#section-24">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-25">判断语句</a></li><li><a href="#section-26">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break-continue">break continue</a></li><li><a href="#section-27">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-19">函数</a></li><li><a href="#section-21">调用</a></li><li><a href="#section-22">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-23">关于条件判断的三种情况</a></li><li><a href="#section-24">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-25">判断语句</a></li><li><a href="#section-26">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break--continue">break &amp; continue</a></li><li><a href="#section-27">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
 <h3 id="section">结构</h3>
 
 <ul>
@@ -64,7 +64,7 @@ throw  try  catch  finally
   <p>与Java 保持一致，顺序按优先级从高到低</p>
 </blockquote>
 
-<pre class="brush: javascript;">[] . () @
+<pre class="brush: java;">[] . () @
 =&gt;
 !  ~  ++  --  – (取负)
 *  /  %
@@ -291,13 +291,14 @@ var new_list2 = native new ArrayList(int); // 导入 构造函数
 
 <ul>
   <li>可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身</li>
-  <li>缺少的参数 自动 null 填充, <em>为了良好的设计 不建议使用缺少函数自动填充</em></li>
+  <li>缺少的参数将用null补齐,</li>
   <li>可使用@ 将第一个参数 外置</li>
 </ul>
 
 <pre class="brush: javascript;">func(arg1, arg2);
 //等同于
 arg1@func(arg2);
+
 list_add(list, item);
 //等同于
 list@list_add(item);
@@ -308,7 +309,7 @@ list@list_add(item);
 <ul>
   <li>作用: 将指定 范围 产生的输出流 重定向到 指定变量</li>
   <li>意义: 可以延后输出</li>
-  <li><strong>使用对象: 1. 代码段；  2. 函数调用</strong></li>
+  <li><strong>使用对象: 1. 代码段；2. 函数调用</strong></li>
   <li>数据格式: 使用OutputStream 时, 为 byte[] ; 使用 Writer 时, 为String.</li>
 </ul>
 
@@ -471,7 +472,7 @@ do{
 
 <ul>
   <li>支持普通 Object, 包括 String </li>
-  <li>使用  Object.equls() 判断是否相等</li>
+  <li>使用 <code>Object.equls()</code> 判断是否相等</li>
   <li>需要 break, 否则无条件继续执行下一个标签的句柄</li>
   <li>每个case 命名空间独立</li>
 </ul>
@@ -491,11 +492,11 @@ do{
 }
 </pre>
 
-<h3 id="break-continue">break continue</h3>
+<h3 id="break--continue">break &amp; continue</h3>
 
-<ul>
-  <li><strong>支持 label, 直接操作该循环体 或 switch</strong></li>
-</ul>
+<blockquote>
+  <p>支持 label</p>
+</blockquote>
 
 <pre class="brush: javascript;">//break continue
 outter: for(i: 6..3){
