@@ -240,6 +240,7 @@ pre code {
 .nav {
   padding-left: 0;
   margin-bottom: 0;
+  margin-left: 0;
   list-style: none;
 }
 
@@ -387,6 +388,8 @@ body {
     float: left;
     width: 220px;
 }
+
+.ws-sidenav {*margin-left:-240px;*margin-top:70px; /* fix ie7*/ }
 .ws-sidenav {
     max-height: 500px;
     overflow: auto;
@@ -403,7 +406,7 @@ body {
   background-color: #2B9AA4;
 }
 .ws-doc-main-body{
-    margin-top: 70px;
+    padding-top: 70px;
 }
 .ws-sidenav{
     margin-top: 8px;
@@ -416,11 +419,7 @@ body {
     margin-left:240px;
 }
 
-.footer-hr{
-    margin-top: 40px;
-    border: solid #2A7A81 1px;
-}
-footer{
+.footer{
     text-align:center;
     border-top: solid #2A7A81 2px;
     margin-top: 60px;

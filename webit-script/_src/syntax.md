@@ -33,7 +33,7 @@ throw  try  catch  finally
 ~~~~~
 
 ### 操作符
-*与Java 保持一致，顺序按优先级从高到低*
+> 与Java 保持一致，顺序按优先级从高到低
 
 ~~~~~javascript
 [] . () @
@@ -53,9 +53,11 @@ throw  try  catch  finally
 ~~~~~
 
 ### 语句
+
 + 结尾分号不能省略
 
 ### 作用域(代码段) `{ }`
+
 + 作用域引用上层变量
 + 本层作用域变量不会影响上层
 + 同一作用域不能重复声明变量
@@ -63,6 +65,7 @@ throw  try  catch  finally
   *1. 调用模板传入的变量; 2.import 返回的变量*
 
 ### 变量
+
 #### 变量声明 var
 
 ~~~~~javascript
@@ -71,6 +74,7 @@ var a, b, c=0, d="d";
 ~~~~~
 
 #### 变量名规则
+
 + 先声明 后使用，所有变量 必须全部声明
 + 可开启 弱声明模式，所有变量不需要 事先声明，解析时自动声明
 + 对大小写敏感
@@ -82,7 +86,8 @@ var a, b, c=0, d="d";
 ++ `for.iter` 用于 最近一层for循环的 迭代状态对象, 可使用`super``this` 限定作用域`super.for.iter`
 
 ### 数据结构
-#### 拥有动态类
+
+#### 类型
 
 ~~~~~javascript
 var x                       //null
@@ -94,6 +99,7 @@ var x6 = {};                //Map
 ~~~~~
 
 #### 字符串
+
 + 转义，`\\` `\"` `\'` `\n` `\r` `\t` `\f` `\b`
 + 允许换行，行后转义字符 可屏蔽该换行符
 
@@ -181,6 +187,7 @@ value = map["key"];
 ~~~~~
 
 ### Java对象
+
 #### 声明
 
 ~~~~~javascript
@@ -198,7 +205,8 @@ book.name = "new name"; //book.setName("new name");
 ~~~~~
 
 #### 访问方法
-*访问方法必须事先native导入成本地函数*
+
+> 访问方法必须事先native导入成本地函数
 
 ~~~~~javascript
 var list_add = native java.util.List.add(Object);
@@ -216,6 +224,7 @@ echo now();
 ### 函数
 
 #### 声明
+
 + 格式同java
 + 可变参数, 
 + 可通过 arguments 获得所有传入的参数, java类型为 Object[]
@@ -236,6 +245,7 @@ var myFunc = function(arg1, arg2){
 
 
 #### 导入Java内的 方法
+
 + 仅可导入公共类的公共方法, 包括静态方法 和 成员方法
 + 可使用`@import` 导入类名 或者包名 用法同Java里的 `import`, 以简化类名输入
 + ~~@import  java.util.*;~~ v1.2.0+ 不再支持导入包
@@ -252,6 +262,7 @@ var new_list2 = native new ArrayList(int); // 导入 构造函数
 
 
 ### 调用
+
 + 可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身
 + 缺少的参数 自动 null 填充, *为了良好的设计 不建议使用缺少函数自动填充*
 + 可使用@ 将第一个参数 外置
@@ -266,6 +277,7 @@ list@list_add(item);
 ~~~~~
 
 ### 重定向输出符 `=>`
+
 + 作用: 将指定 范围 产生的输出流 重定向到 指定变量
 + 意义: 可以延后输出
 + **使用对象: 1. 代码段；  2. 函数调用**
@@ -291,6 +303,7 @@ var a = arg1@func() => out +1;
 
 
 ### import & include
+
 + 区别: import  将把调用模板的 上层变量 推入调用层的当前已存在变量
 + 共同点: 都会在调用位置产生 输出
 + 将使用默认的Loader 加载模板，可使用相对路径或绝对路径
@@ -332,6 +345,7 @@ import "book-head.wtl"  {"param1":1}  a,b=c;
 
 
 ### 三元条件运算符 & 其简写
+
 + **操作符按 自右向左 结合, 详解看下面例子**
 + **简写时 `?:` 之间没有空白字符**
 
@@ -351,8 +365,9 @@ var a4 = list1 ?: list2 ?: list3;
 ~~~~~
 
 ### 判断语句
-#### 判断表达式 ?:
+
 #### 判断控制语句 if - else if - else
+
 + 不能省略 `{  }`
 
 ~~~~~javascript
@@ -367,6 +382,7 @@ if( ... ){
 
 
 ### 循环控制语句
+
 + 支持 数组,  java.util.Collection, java.util.Iterator, java.util.Enumeration, CharSequence, java.util.Map, 整型递增/递减
 + 当集合为null 或者为空时将不会执行循环
 + 支持 else , 可选, 当不符合执行循环体的条件时执行else体.
@@ -402,7 +418,8 @@ for(key, value : map){
 }
 ~~~~~
 
-#### while do-while 
+#### while do-while
+
 + 不支持 for.iter 特殊变量
 
 ~~~~~javascript
@@ -444,6 +461,7 @@ switch(a){
 ~~~~~
 
 ### break continue
+
 + **支持 label, 直接操作该循环体 或 switch**
 
 ~~~~~javascript

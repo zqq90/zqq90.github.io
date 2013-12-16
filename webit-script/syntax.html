@@ -25,7 +25,7 @@
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-11">数字</a></li><li><a href="#section-12">布尔</a></li><li><a href="#section-13">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-17">函数</a></li><li><a href="#section-19">调用</a></li><li><a href="#section-20">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-21">关于条件判断的三种情况</a></li><li><a href="#section-22">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-23">判断语句</a></li><li><a href="#section-24">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break-continue">break continue</a></li><li><a href="#section-25">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-19">函数</a></li><li><a href="#section-21">调用</a></li><li><a href="#section-22">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-23">关于条件判断的三种情况</a></li><li><a href="#section-24">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-25">判断语句</a></li><li><a href="#section-26">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break-continue">break continue</a></li><li><a href="#section-27">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
 <h3 id="section">结构</h3>
 
 <ul>
@@ -60,7 +60,9 @@ throw  try  catch  finally
 </pre>
 
 <h3 id="section-4">操作符</h3>
-<p><em>与Java 保持一致，顺序按优先级从高到低</em></p>
+<blockquote>
+  <p>与Java 保持一致，顺序按优先级从高到低</p>
+</blockquote>
 
 <pre class="brush: javascript;">[] . () @
 =&gt;
@@ -79,11 +81,13 @@ throw  try  catch  finally
 </pre>
 
 <h3 id="section-5">语句</h3>
+
 <ul>
   <li>结尾分号不能省略</li>
 </ul>
 
 <h3 id="section-6">作用域(代码段) <code>{ }</code></h3>
+
 <ul>
   <li>作用域引用上层变量</li>
   <li>本层作用域变量不会影响上层</li>
@@ -93,13 +97,15 @@ throw  try  catch  finally
 </ul>
 
 <h3 id="section-7">变量</h3>
-<p>#### 变量声明 var</p>
+
+<h4 id="var">变量声明 var</h4>
 
 <pre class="brush: javascript;">var a;
 var a, b, c=0, d="d";
 </pre>
 
 <h4 id="section-8">变量名规则</h4>
+
 <ul>
   <li>先声明 后使用，所有变量 必须全部声明</li>
   <li>可开启 弱声明模式，所有变量不需要 事先声明，解析时自动声明</li>
@@ -113,7 +119,8 @@ var a, b, c=0, d="d";
 </ul>
 
 <h3 id="section-9">数据结构</h3>
-<p>#### 拥有动态类</p>
+
+<h4 id="section-10">类型</h4>
 
 <pre class="brush: javascript;">var x                       //null
 var x2 = 6;                 //数字
@@ -123,7 +130,8 @@ var x5 = [1, "string"];     //数组
 var x6 = {};                //Map
 </pre>
 
-<h4 id="section-10">字符串</h4>
+<h4 id="section-11">字符串</h4>
+
 <ul>
   <li>转义，<code>\\</code> <code>\"</code> <code>\'</code> <code>\n</code> <code>\r</code> <code>\t</code> <code>\f</code> <code>\b</code></li>
   <li>允许换行，行后转义字符 可屏蔽该换行符</li>
@@ -135,7 +143,7 @@ var x6 = {};                //Map
 这是第五行，第四行是空行";
 </pre>
 
-<h3 id="section-11">数字</h3>
+<h3 id="section-12">数字</h3>
 
 <pre class="brush: javascript;">var x1=34;  //Integer
 var x2=34L;  //Long
@@ -147,15 +155,15 @@ var x7 = 0123; //八进制
 var x8 = 0x1A; //十六进制
 </pre>
 
-<h3 id="section-12">布尔</h3>
+<h3 id="section-13">布尔</h3>
 
 <pre class="brush: javascript;">var x = true;
 var y = false;
 </pre>
 
-<h3 id="section-13">数组</h3>
+<h3 id="section-14">数组</h3>
 
-<h4 id="section-14">带初始值的数组</h4>
+<h4 id="section-15">带初始值的数组</h4>
 
 <pre class="brush: javascript;">var array = [1, "a string", book];
 var item;
@@ -207,22 +215,26 @@ value = map["key"];
 </pre>
 
 <h3 id="java">Java对象</h3>
-<p>#### 声明</p>
+
+<h4 id="section-16">声明</h4>
 
 <pre class="brush: javascript;">var new_list = native new java.util.ArrayList();
 var list = new_list();
 var list2 = new_list();
 </pre>
 
-<h4 id="section-15">访问属性</h4>
+<h4 id="section-17">访问属性</h4>
 
 <pre class="brush: javascript;">var book;
 var name = book.name; // book.getName();
 book.name = "new name"; //book.setName("new name"); 
 </pre>
 
-<h4 id="section-16">访问方法</h4>
-<p><em>访问方法必须事先native导入成本地函数</em></p>
+<h4 id="section-18">访问方法</h4>
+
+<blockquote>
+  <p>访问方法必须事先native导入成本地函数</p>
+</blockquote>
 
 <pre class="brush: javascript;">var list_add = native java.util.List.add(Object);
 list@list_add(0);
@@ -235,9 +247,10 @@ list_add(list, 1);
 echo now();
 </pre>
 
-<h3 id="section-17">函数</h3>
+<h3 id="section-19">函数</h3>
 
-<h4 id="section-18">声明</h4>
+<h4 id="section-20">声明</h4>
+
 <ul>
   <li>格式同java</li>
   <li>可变参数, </li>
@@ -258,6 +271,7 @@ var myFunc = function(arg1, arg2){
 </pre>
 
 <h4 id="java-">导入Java内的 方法</h4>
+
 <ul>
   <li>仅可导入公共类的公共方法, 包括静态方法 和 成员方法</li>
   <li>可使用<code>@import</code> 导入类名 或者包名 用法同Java里的 <code>import</code>, 以简化类名输入</li>
@@ -273,7 +287,8 @@ var new_list = native new ArrayList(); // 导入 构造函数
 var new_list2 = native new ArrayList(int); // 导入 构造函数
 </pre>
 
-<h3 id="section-19">调用</h3>
+<h3 id="section-21">调用</h3>
+
 <ul>
   <li>可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身</li>
   <li>缺少的参数 自动 null 填充, <em>为了良好的设计 不建议使用缺少函数自动填充</em></li>
@@ -288,7 +303,8 @@ list_add(list, item);
 list@list_add(item);
 </pre>
 
-<h3 id="section-20">重定向输出符 <code>=&gt;</code></h3>
+<h3 id="section-22">重定向输出符 <code>=&gt;</code></h3>
+
 <ul>
   <li>作用: 将指定 范围 产生的输出流 重定向到 指定变量</li>
   <li>意义: 可以延后输出</li>
@@ -314,6 +330,7 @@ var a = arg1@func() =&gt; out +1;
 </pre>
 
 <h3 id="import--include">import &amp; include</h3>
+
 <ul>
   <li>区别: import  将把调用模板的 上层变量 推入调用层的当前已存在变量</li>
   <li>共同点: 都会在调用位置产生 输出</li>
@@ -347,7 +364,7 @@ var b;
 import "book-head.wtl"  {"param1":1}  a,b=c;
 </pre>
 
-<h3 id="section-21">关于条件判断的三种情况</h3>
+<h3 id="section-23">关于条件判断的三种情况</h3>
 
 <ul>
   <li>如果是boolean(Boolean)值 会原封返回</li>
@@ -356,7 +373,8 @@ import "book-head.wtl"  {"param1":1}  a,b=c;
   <li>否则 返回 true</li>
 </ul>
 
-<h3 id="section-22">三元条件运算符 &amp; 其简写</h3>
+<h3 id="section-24">三元条件运算符 &amp; 其简写</h3>
+
 <ul>
   <li><strong>操作符按 自右向左 结合, 详解看下面例子</strong></li>
   <li><strong>简写时 <code>?:</code> 之间没有空白字符</strong></li>
@@ -376,10 +394,13 @@ var x =  (expr1 ?  expr3 :  expr2) ? expr4 : expr5;
 var a4 = list1 ?: list2 ?: list3;
 </pre>
 
-<h3 id="section-23">判断语句</h3>
-<p>#### 判断表达式 ?:
-#### 判断控制语句 if - else if - else
-+ 不能省略 <code>{  }</code></p>
+<h3 id="section-25">判断语句</h3>
+
+<h4 id="if---else-if---else">判断控制语句 if - else if - else</h4>
+
+<ul>
+  <li>不能省略 <code>{  }</code></li>
+</ul>
 
 <pre class="brush: javascript;">if( ... ){
     ...;
@@ -390,7 +411,8 @@ var a4 = list1 ?: list2 ?: list3;
 }
 </pre>
 
-<h3 id="section-24">循环控制语句</h3>
+<h3 id="section-26">循环控制语句</h3>
+
 <ul>
   <li>支持 数组,  java.util.Collection, java.util.Iterator, java.util.Enumeration, CharSequence, java.util.Map, 整型递增/递减</li>
   <li>当集合为null 或者为空时将不会执行循环</li>
@@ -427,6 +449,7 @@ for(i: 6..3){
 </pre>
 
 <h4 id="while-do-while">while do-while</h4>
+
 <ul>
   <li>不支持 for.iter 特殊变量</li>
 </ul>
@@ -469,6 +492,7 @@ do{
 </pre>
 
 <h3 id="break-continue">break continue</h3>
+
 <ul>
   <li><strong>支持 label, 直接操作该循环体 或 switch</strong></li>
 </ul>
@@ -494,11 +518,11 @@ outter: for(i: 6..3){
 }
 </pre>
 
-<h3 id="section-25">正在完善。。。</h3>
+<h3 id="section-27">正在完善。。。</h3>
 </div>
-<footer>
+<div class="footer">
 版权所有 2012-2013 Webit团队.
-</footer>
+</div>
 </div>
 <script type="text/javascript" src="js/application.js"></script>
 <script type="text/javascript">SyntaxHighlighter.all();</script>

@@ -326,3 +326,7 @@
 .syntaxhighlighter .keyword {
   font-weight: bold !important;
 }
+
+.syntaxhighlighter {
+  padding-bottom: 3px !important;
+}
