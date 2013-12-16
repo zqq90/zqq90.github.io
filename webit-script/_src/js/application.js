@@ -18,21 +18,20 @@
         return i >= 0 ? href.substr(i + 1) : null;
     };
 
-    var affix = function(hash){
-        //if(win.scrollMaxY - win.scrollY > 50){
-        //if(win.scrollY - > 50){
-        //    win.scroll(win.scrollX,win.scrollY-55);
-        //}
-        var a = doc.getElementById(hash);
-        if(a && (a.offsetTop - win.pageYOffset) < 55){
-        console.log("offset:"+win.pageYOffset);
-        console.log("offset2:"+a.offsetTop);
-            win.scroll(win.scrollX,win.scrollY-55);
-        }
-        
-    };
     var onHashChange = function(hash){
-        setTimeout(affix,60,hash);
+        setTimeout(function(){
+            var a = doc.getElementById(hash);
+            var scTop;
+            if ((scTop = win.pageYOffset) === undefined) {
+                scTop = (doc.compatMode && doc.compatMode != 'BackCompat')
+                    ?doc.documentElement.scrollTop
+                    :scTop = doc.body.scrollTop;   
+            }
+            if(a && (a.offsetTop - scTop) < 55){
+                //win.scroll(win.scrollX,win.scTop-55);
+                win.scrollBy(0,-55);
+            }
+        },60,hash);
     };
 
     var initListener = function() {
@@ -60,6 +59,5 @@
             })(), 100);
         }
     };
-
-initListener();
+    initListener();
 })(window);
