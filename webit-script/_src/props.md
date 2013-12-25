@@ -26,6 +26,7 @@ webit.script.Engine.vars=request, response
 > 缺省配置文件:[webit-script-default.props][default_config]
 
 ### 2.额外的参数Map
++ 可以为null
 + 额外的参数如果是String,会附加/覆盖到props配置，使用的`${}`会生效
 + 额外参数默认是采取覆盖策略，如果使用附加请在key后面附加`+`,例如`webit.script.Engine.resolvers+`
 + 如果是其他类型会被原样保留并注入。
@@ -39,7 +40,7 @@ DEFAULT_ENCODING=UTF-8
 
 # 设置一个参数: 类型.字段名=值
 # 和 properties 一样
-webit.script.Engine.fileNameExtension=.wtl
+webit.script.Engine.suffix=.wit
 
 # 这里先设置区段 []， 这样就可以简短书写了
 [webit.script.Engine]
@@ -94,7 +95,7 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>资源加载器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.enableAsmNative</td>
+	<td>webit.script.core.NativeFactory.enableAsm</td>
 	<td>是否允许ASM优化Native</td>
 </tr>
 <tr>
@@ -110,15 +111,15 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>bean属性解释器【列表】</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.textStatmentFactoryClass</td>
+	<td>webit.script.Engine.textStatementFactoryClass</td>
 	<td>TextStatment生成器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.appendLostFileNameExtension</td>
+	<td>webit.script.Engine.appendLostSuffix</td>
 	<td>是否自动添加丢失的后缀</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.fileNameExtension</td>
+	<td>webit.script.Engine.suffix</td>
 	<td>后缀</td>
 </tr>
 <tr>

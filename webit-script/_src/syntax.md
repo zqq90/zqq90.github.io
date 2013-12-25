@@ -90,12 +90,12 @@ var a, b, c=0, d="d";
 #### 类型
 
 ~~~~~javascript
-var x                       //null
-var x2 = 6;                 //数字
-var x3 = "Bill";            //字符串
-var x4 = 'a';               //字符
-var x5 = [1, "string"];     //数组
-var x6 = {};                //Map
+var x;                  //null
+var x2 = 6;             //数字
+var x3 = "Bill";        //字符串
+var x4 = 'a';           //字符
+var x5 = [1, "string"]; //数组
+var x6 = {};            //Map
 ~~~~~
 
 #### 字符串
@@ -113,14 +113,14 @@ var string = "第一行  \
 ### 数字
 
 ~~~~~javascript
-var x1=34;  //Integer
-var x2=34L;  //Long
-var x3=34.00; //Double
+var x1=34;      //Integer
+var x2=34L;     //Long
+var x3=34.00;   //Double
 var x4=34.00D;  //Double
 var x5=34.00F;  //Float
 var x6 = 0b10101;  //二进制
-var x7 = 0123; //八进制
-var x8 = 0x1A; //十六进制
+var x7 = 0123;  //八进制
+var x8 = 0x1A;  //十六进制
 ~~~~~
 
 ### 布尔

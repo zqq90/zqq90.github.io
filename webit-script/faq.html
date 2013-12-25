@@ -20,12 +20,13 @@
 <li><a href="example.html">示例</a></li>
 <li><a href="syntax.html">语法</a></li>
 <li><a href="props.html">配置</a></li>
+<li><a href="integration.html">集成</a></li>
 <li><a href="faq.html">常见问题</a></li>
 <li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">1. 如何获取帮助？</a></li><li><a href="#section-1">2. 为什么不做编译执行？</a></li><li><a href="#layout">3. 如何实现layout特性？</a></li></ul></div><div class="ws-doc-body" ><h3 id="section">1. 如何获取帮助？</h3>
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">1. 如何获取帮助？</a></li><li><a href="#section-1">2. 为什么不做编译执行？</a></li><li><a href="#layout">3. 如何实现layout特性？</a></li><li><a href="#native">4. 如何理解 Native？</a></li></ul></div><div class="ws-doc-body" ><h3 id="section">1. 如何获取帮助？</h3>
 
 <blockquote>
   <p>Webit Script 官方QQ群: 302505483 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=7be9d8a59a8533b7c2837bdc22295b4b47c65384eda323971cf5f3b9943ad9db"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="QQ群: 302505483" title="QQ群: 302505483" /></a></p>
@@ -75,6 +76,13 @@ Hello Webit!
   <p>技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
 </blockquote>
 
+<h3 id="native">4. 如何理解 Native？</h3>
+<blockquote>
+  <p>native 实际上是为了隔离Java采用的一种方式。
+native 得到的是对java函数/字段的引用。
+需要注意的是：
+&gt; 对于 native得到的函数，可以当作function使用，通过传参得到结果，但是要保持参数类型与引用的java方法一致</p>
+</blockquote>
 </div>
 <div class="footer">
 版权所有 2012-2013 Webit团队.

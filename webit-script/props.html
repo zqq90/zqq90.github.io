@@ -20,6 +20,7 @@
 <li><a href="example.html">示例</a></li>
 <li><a href="syntax.html">语法</a></li>
 <li><a href="props.html">配置</a></li>
+<li><a href="integration.html">集成</a></li>
 <li><a href="faq.html">常见问题</a></li>
 <li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
 </div>
@@ -59,6 +60,7 @@ webit.script.Engine.vars=request, response
 
 <h3 id="map">2.额外的参数Map</h3>
 <ul>
+  <li>可以为null</li>
   <li>额外的参数如果是String,会附加/覆盖到props配置，使用的<code>${}</code>会生效</li>
   <li>额外参数默认是采取覆盖策略，如果使用附加请在key后面附加<code>+</code>,例如<code>webit.script.Engine.resolvers+</code></li>
   <li>如果是其他类型会被原样保留并注入。</li>
@@ -72,7 +74,7 @@ DEFAULT_ENCODING=UTF-8
 
 # 设置一个参数: 类型.字段名=值
 # 和 properties 一样
-webit.script.Engine.fileNameExtension=.wtl
+webit.script.Engine.suffix=.wit
 
 # 这里先设置区段 []， 这样就可以简短书写了
 [webit.script.Engine]
@@ -131,7 +133,7 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>资源加载器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.enableAsmNative</td>
+	<td>webit.script.core.NativeFactory.enableAsm</td>
 	<td>是否允许ASM优化Native</td>
 </tr>
 <tr>
@@ -147,15 +149,15 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 	<td>bean属性解释器【列表】</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.textStatmentFactoryClass</td>
+	<td>webit.script.Engine.textStatementFactoryClass</td>
 	<td>TextStatment生成器</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.appendLostFileNameExtension</td>
+	<td>webit.script.Engine.appendLostSuffix</td>
 	<td>是否自动添加丢失的后缀</td>
 </tr>
 <tr>
-	<td>webit.script.Engine.fileNameExtension</td>
+	<td>webit.script.Engine.suffix</td>
 	<td>后缀</td>
 </tr>
 <tr>
