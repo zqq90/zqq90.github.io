@@ -21,12 +21,13 @@
 <li><a href="syntax.html">语法</a></li>
 <li><a href="props.html">配置</a></li>
 <li><a href="integration.html">集成</a></li>
+<li><a href="libapi.html">库/API</a></li>
 <li><a href="faq.html">常见问题</a></li>
 <li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-19">函数</a></li><li><a href="#section-21">调用</a></li><li><a href="#section-22">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-23">关于条件判断的三种情况</a></li><li><a href="#section-24">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-25">判断语句</a></li><li><a href="#section-26">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break--continue">break &amp; continue</a></li><li><a href="#section-27">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量/常量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-20">函数</a></li><li><a href="#section-22">调用</a></li><li><a href="#section-23">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-24">关于条件判断的三种情况</a></li><li><a href="#section-25">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-26">判断语句</a></li><li><a href="#section-27">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break--continue">break &amp; continue</a></li><li><a href="#section-28">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
 <h3 id="section">结构</h3>
 
 <ul>
@@ -45,7 +46,7 @@
 
 <h3 id="section-2">关键字</h3>
 
-<pre class="brush: javascript;">var  super  this
+<pre class="brush: javascript;">var  const  super  this
 if  else
 switch  case  default
 for  do  while  break  continue 
@@ -56,7 +57,7 @@ native  new  @import
 
 <h3 id="section-3">保留的关键字</h3>
 
-<pre class="brush: javascript;">static  instanceof  class  const  final
+<pre class="brush: javascript;">static  instanceof  class  final
 throw  try  catch  finally
 </pre>
 
@@ -97,12 +98,29 @@ throw  try  catch  finally
 <em>1. 调用模板传入的变量; 2.import 返回的变量</em></li>
 </ul>
 
-<h3 id="section-7">变量</h3>
+<h3 id="section-7">变量/常量</h3>
 
 <h4 id="var">变量声明 var</h4>
 
 <pre class="brush: javascript;">var a;
 var a, b, c=0, d="d";
+</pre>
+
+<h4 id="const">常量声明 const</h4>
+<blockquote>
+  <p>常量是不可变量，必须在声明的时候指明初始值，需要是直接量，或者直接量的简单运算</p>
+</blockquote>
+
+<pre class="brush: javascript;">const c1 =1;
+const c2 = "aaa";
+const c3 = 'a';
+const c4 = 2 *  1000;
+const c5 = "a" + 1;
+
+//native一个函数/构造方法也将得到一个直接量
+const func = native java.util.List.add(Object);
+// 如果 是一个public static final 的java字段 也可以作为直接量
+const INT_MAX = native Integer.MAX_VALUE;
 </pre>
 
 <h4 id="section-8">变量名规则</h4>
@@ -242,15 +260,25 @@ list@list_add(0);
 list_add(list, 1);
 </pre>
 
-<p><em>访问静态方法</em></p>
+<p><em>访问公共静态方法</em></p>
 
 <pre class="brush: javascript;">var now = native java.lang.System.currentTimeMillis();
 echo now();
 </pre>
 
-<h3 id="section-19">函数</h3>
+<h4 id="section-19">访问公共静态字段</h4>
 
-<h4 id="section-20">声明</h4>
+<pre class="brush: javascript;">//对于final的字段，直接得到其值
+const INT_MAX = native Integer.MAX_VALUE;
+
+//对于非final的字段，得到其引用，可以即时使用和赋值
+var f2 = native StaticFields.field2;
+(native StaticFields.field2) = new_value;
+</pre>
+
+<h3 id="section-20">函数</h3>
+
+<h4 id="section-21">声明</h4>
 
 <ul>
   <li>格式同java</li>
@@ -288,7 +316,7 @@ var new_list = native new ArrayList(); // 导入 构造函数
 var new_list2 = native new ArrayList(int); // 导入 构造函数
 </pre>
 
-<h3 id="section-21">调用</h3>
+<h3 id="section-22">调用</h3>
 
 <ul>
   <li>可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身</li>
@@ -305,7 +333,7 @@ list_add(list, item);
 list@list_add(item);
 </pre>
 
-<h3 id="section-22">重定向输出符 <code>=&gt;</code></h3>
+<h3 id="section-23">重定向输出符 <code>=&gt;</code></h3>
 
 <ul>
   <li>作用: 将指定 范围 产生的输出流 重定向到 指定变量</li>
@@ -366,7 +394,7 @@ var b;
 import "book-head.wtl"  {"param1":1}  a,b=c;
 </pre>
 
-<h3 id="section-23">关于条件判断的三种情况</h3>
+<h3 id="section-24">关于条件判断的三种情况</h3>
 
 <ul>
   <li>如果是boolean(Boolean)值 会原封返回</li>
@@ -375,7 +403,7 @@ import "book-head.wtl"  {"param1":1}  a,b=c;
   <li>否则 返回 true</li>
 </ul>
 
-<h3 id="section-24">三元条件运算符 &amp; 其简写</h3>
+<h3 id="section-25">三元条件运算符 &amp; 其简写</h3>
 
 <ul>
   <li><strong>操作符按 自右向左 结合, 详解看下面例子</strong></li>
@@ -396,7 +424,7 @@ var x =  (expr1 ?  expr3 :  expr2) ? expr4 : expr5;
 var a4 = list1 ?: list2 ?: list3;
 </pre>
 
-<h3 id="section-25">判断语句</h3>
+<h3 id="section-26">判断语句</h3>
 
 <h4 id="if---else-if---else">判断控制语句 if - else if - else</h4>
 
@@ -413,7 +441,7 @@ var a4 = list1 ?: list2 ?: list3;
 }
 </pre>
 
-<h3 id="section-26">循环控制语句</h3>
+<h3 id="section-27">循环控制语句</h3>
 
 <ul>
   <li>支持 数组,  java.util.Collection, java.util.Iterator, java.util.Enumeration, CharSequence, java.util.Map, 整型递增/递减</li>
@@ -520,7 +548,7 @@ outter: for(i: 6..3){
 }
 </pre>
 
-<h3 id="section-27">正在完善。。。</h3>
+<h3 id="section-28">正在完善。。。</h3>
 </div>
 <div class="footer">
 版权所有 2012-2013 Webit团队.

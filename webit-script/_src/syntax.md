@@ -16,7 +16,7 @@
 ### 关键字
 
 ~~~~~javascript
-var  super  this
+var  const  super  this
 if  else
 switch  case  default
 for  do  while  break  continue 
@@ -28,7 +28,7 @@ native  new  @import
 ### 保留的关键字
 
 ~~~~~javascript
-static  instanceof  class  const  final
+static  instanceof  class  final
 throw  try  catch  finally
 ~~~~~
 
@@ -63,14 +63,30 @@ throw  try  catch  finally
 + 同一作用域不能重复声明变量
 + **模板传入的变量仅在该作用域查找同名变量并赋值**
   *1. 调用模板传入的变量; 2.import 返回的变量*
-
-### 变量
+  
+### 变量/常量
 
 #### 变量声明 var
 
 ~~~~~javascript
 var a;
 var a, b, c=0, d="d";
+~~~~~
+
+#### 常量声明 const
+> 常量是不可变量，必须在声明的时候指明初始值，需要是直接量，或者直接量的简单运算
+
+~~~~~javascript
+const c1 =1;
+const c2 = "aaa";
+const c3 = 'a';
+const c4 = 2 *  1000;
+const c5 = "a" + 1;
+
+//native一个函数/构造方法也将得到一个直接量
+const func = native java.util.List.add(Object);
+// 如果 是一个public static final 的java字段 也可以作为直接量
+const INT_MAX = native Integer.MAX_VALUE;
 ~~~~~
 
 #### 变量名规则
@@ -214,13 +230,24 @@ list@list_add(0);
 list_add(list, 1);
 ~~~~~
 
-*访问静态方法*
+*访问公共静态方法*
 
 ~~~~~javascript
 var now = native java.lang.System.currentTimeMillis();
 echo now();
 ~~~~~
  
+#### 访问公共静态字段
+
+~~~~~javascript
+//对于final的字段，直接得到其值
+const INT_MAX = native Integer.MAX_VALUE;
+
+//对于非final的字段，得到其引用，可以即时使用和赋值
+var f2 = native StaticFields.field2;
+(native StaticFields.field2) = new_value;
+~~~~~
+
 ### 函数
 
 #### 声明

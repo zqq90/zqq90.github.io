@@ -21,12 +21,32 @@
 <li><a href="syntax.html">语法</a></li>
 <li><a href="props.html">配置</a></li>
 <li><a href="integration.html">集成</a></li>
+<li><a href="libapi.html">库/API</a></li>
 <li><a href="faq.html">常见问题</a></li>
 <li><a href="https://github.com/zqq90/webit-script/" target="_blank">Github</a></li>
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="footer">
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#mvc">MVC集成</a></li></ul></div><div class="ws-doc-body" ><h2 id="mvc">MVC集成</h2>
+
+<blockquote>
+  <p>默认配置：webit-script-default-web.props</p>
+</blockquote>
+
+<ul>
+  <li>使用ServletLoader 加载ServletContext 下的资源</li>
+  <li>byte流输出</li>
+  <li>免声明变量：request,response</li>
+  <li>HttpSession、HttpServlet相关的Resolvers</li>
+  <li>注册了全局变量<code>BASE_PATH</code>和<code>SERVLET_CONTEXT</code></li>
+</ul>
+
+<blockquote>
+  <p>提供了对Jodd-Madvoc、SpringMVC、Struts2、JFinal的支持 <a href="https://github.com/zqq90/webitscript-mvc-demo">示例程序</a></p>
+</blockquote>
+
+</div>
+<div class="footer">
 版权所有 2012-2013 Webit团队.
 </div>
 </div>

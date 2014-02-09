@@ -1,19 +1,15 @@
+## MVCé›†æˆ
 
-## MVC¼¯³ÉÄ¬ÈÏÉèÖÃ
+> é»˜è®¤é…ç½®ï¼šwebit-script-default-web.props
 
-> Ê×ÏÈ»á¼ÓÔØClasspathÏÂµÄÄ¬ÈÏÉèÖÃÎÄ¼ş£º
-
-+ ÆôÓÃ byteÊä³ö
-+ ÃâÉùÃ÷±äÁ¿£º
-+ resolver
-
-> [Ê¾Àı³ÌĞò]
++ ä½¿ç”¨ServletLoader åŠ è½½ServletContext ä¸‹çš„èµ„æº
++ byteæµè¾“å‡º
++ å…å£°æ˜å˜é‡ï¼šrequest,response
++ HttpSessionã€HttpServletç›¸å…³çš„Resolvers
++ æ³¨å†Œäº†å…¨å±€å˜é‡`BASE_PATH`å’Œ`SERVLET_CONTEXT`
 
 
-## Jodd Madvoc
+> æä¾›äº†å¯¹Jodd-Madvocã€SpringMVCã€Struts2ã€JFinalçš„æ”¯æŒ [ç¤ºä¾‹ç¨‹åº][mvc-demo]
 
-## JFinal
 
-## Spring MVC
-
-## 
+[mvc-demo]: https://github.com/zqq90/webitscript-mvc-demo

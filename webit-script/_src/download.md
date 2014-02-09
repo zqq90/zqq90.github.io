@@ -12,7 +12,7 @@
 <dependency>
   <groupId>com.github.zqq90.webit-script</groupId>
   <artifactId>webit-script</artifactId>
-  <version>1.3.1</version>
+  <version>1.4.0</version>
 </dependency>
 ~~~~~
 
@@ -31,8 +31,8 @@
 + [github-issue][new_issue]
 
 
-[jar]: http://central.maven.org/maven2/com/github/zqq90/webit-script/webit-script/1.3.1/webit-script-1.3.1.jar
-[sources]: http://central.maven.org/maven2/com/github/zqq90/webit-script/webit-script/1.3.1/webit-script-1.3.1-sources.jar
+[jar]: http://central.maven.org/maven2/com/github/zqq90/webit-script/webit-script/1.4.0/webit-script-1.4.0.jar
+[sources]: http://central.maven.org/maven2/com/github/zqq90/webit-script/webit-script/1.4.0/webit-script-1.4.0-sources.jar
 
 [new_issue]: https://github.com/zqq90/webit-script/issues/new
 [license]: https://github.com/zqq90/webit-script/blob/master/LICENSE
