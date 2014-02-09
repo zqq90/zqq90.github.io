@@ -163,10 +163,11 @@ prefix=pre_
 
 <pre>## 注册全局函数
 [webit.script.tools.cache.CacheGlobalRegister]
-
-## 是否注册 cache_clear() 函数，默认为false
+# 函数注册的名称，默认为cache
+name=cache
+# 是否注册 cache_clear() 函数，默认为false
 registCacheClear=true
-## 选择Cache的供应组件
+# 选择Cache的供应组件
 cacheProvider=webit.script.tools.cache.impl.SimpleCacheProvider
 
 ## 配置自带的Cache的供应组件

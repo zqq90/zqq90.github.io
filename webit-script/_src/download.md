@@ -14,6 +14,11 @@
   <artifactId>webit-script</artifactId>
   <version>1.4.0</version>
 </dependency>
+<dependency>
+  <groupId>com.github.zqq90.webit-script</groupId>
+  <artifactId>webit-script-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ~~~~~
 
 ## 许可证
