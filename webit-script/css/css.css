@@ -1,80 +1,64 @@
-
 a {
     background: transparent;
 }
-
 a:focus {
     outline: thin dotted;
 }
-
 a:active,
 a:hover {
     outline: 0;
 }
-
 h1 {
     margin: 0.67em 0;
     font-size: 2em;
 }
-
 hr {
     height: 0;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
-
 code,
 pre{
     font-family: monospace, serif;
     font-size: 1em;
 }
-
 q {
     quotes: "\201C" "\201D" "\2018" "\2019";
 }
-
-
 a {
     color: #e8d069;
     text-decoration: none;
 }
-
 a:hover,
 a:focus {
     color: #debb27;
     text-decoration: underline;
 }
-
 a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
-
 a {
     color: #e8d069;
     text-decoration: none;
 }
-
 a:hover,
 a:focus {
     color: #debb27;
     text-decoration: underline;
 }
-
 a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
-
 h1,
 h2,
 h3 {
     margin-top: 20px;
     margin-bottom: 10px;
 }
-
 h1 small,
 h2 small,
 h3 small,
@@ -83,14 +67,12 @@ h2 .small,
 h3 .small {
     font-size: 65%;
 }
-
 h4,
 h5,
 h6 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 h4 small,
 h5 small,
 h6 small,
@@ -99,121 +81,100 @@ h5 .small,
 h6 .small {
     font-size: 75%;
 }
-
 h1,
 .h1 {
     font-size: 36px;
 }
-
 h2,
 .h2 {
     font-size: 30px;
 }
-
 h3,
 .h3 {
     font-size: 24px;
 }
-
 h4,
 .h4 {
     font-size: 18px;
 }
-
 h5,
 .h5 {
     font-size: 14px;
 }
-
 h6,
 .h6 {
     font-size: 12px;
 }
-
 p {
     margin: 0 0 10px;
 }
-
-
 ul,
 ol {
     margin-top: 0;
     margin-bottom: 10px;
 }
-
 ul ul,
 ol ul,
 ul ol,
 ol ol {
     margin-bottom: 0;
 }
-
 blockquote {
+    font-size: 70%;
     padding: 10px 20px;
     margin: 0 0 20px;
     background-color: #154d63;
     border-left: 5px solid rgba(255, 255, 255, 0.6);
 }
-
 blockquote p {
     font-size: 17.5px;
     font-weight: 300;
     line-height: 1.25;
 }
-
 blockquote p:last-child {
     margin-bottom: 0;
 }
-
 blockquote small,
 blockquote .small {
     display: block;
     line-height: 1.428571429;
     color: rgba(255, 255, 255, 0.6);
 }
-
 blockquote small:before,
 blockquote .small:before {
     content: '\2014 \00A0';
 }
-
 blockquote.pull-right {
     padding-right: 15px;
     padding-left: 0;
     border-right: 5px solid rgba(255, 255, 255, 0.6);
     border-left: 0;
 }
-
 blockquote.pull-right p,
 blockquote.pull-right small,
 blockquote.pull-right .small {
     text-align: right;
 }
-
 blockquote.pull-right small:before,
 blockquote.pull-right .small:before {
     content: '';
 }
-
 blockquote.pull-right small:after,
 blockquote.pull-right .small:after {
     content: '\00A0 \2014';
 }
-
 blockquote:before,
 blockquote:after {
     content: "";
 }
-
 code {
-    padding: 2px 4px;
+    padding: 1.6px 2px;
     font-size: 90%;
-    color: #c7254e;
+    color: #E3DD47;
     white-space: nowrap;
-    background-color: #f9f2f4;
+    background-color: #355855;
     border-radius: 4px;
 }
-
 pre {
     display: block;
     padding: 9.5px;
@@ -227,7 +188,6 @@ pre {
     border: 1px solid #cccccc;
     border-radius: 4px;
 }
-
 pre code {
     padding: 0;
     font-size: inherit;
@@ -236,38 +196,32 @@ pre code {
     background-color: transparent;
     border-radius: 0;
 }
-
 .nav {
     padding-left: 0;
     margin-bottom: 0;
     margin-left: 0;
     list-style: none;
 }
-
 .nav > li {
     position: relative;
     display: block;
 }
-
 .nav > li > a {
     position: relative;
     display: block;
     padding: 10px 15px;
 }
-
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
     background-color: #052f40;
 }
-
 .navbar {
     position: relative;
     min-height: 50px;
     margin-bottom: 20px;
     border: 1px solid transparent;
 }
-
 .navbar-collapse li {
     float:left;
     display:block;
@@ -282,46 +236,37 @@ pre code {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     -webkit-overflow-scrolling: touch;
 }
-
-
 .navbar-fixed-top{
     position: fixed;
     right: 0;
     left: 0;
     z-index: 1030;
 }
-
 .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
 }
-
 .navbar-nav {
     margin: 7.5px -15px;
 }
-
 .navbar-nav > li > a {
     padding-top: 20px;
     padding-bottom: 10px;
     line-height: 20px;
 }
-
 .navbar-default  .navbar-nav {
     margin-top:0;
     margin-bottom:0;
 }
-
 .navbar-default {
     background-color: #ad1d28;
     border-color: #911821;
 }
-
 .navbar-default  li > a:hover,
 .navbar-default  li > a:focus {
     color: #ffffff;
     background-color: #da3b0b;
 }
-
 *,
 *:before,
 *:after {
@@ -329,7 +274,6 @@ pre code {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -337,28 +281,22 @@ html {
     font-size: 62.5%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 body {
     margin: 0;
     font-family: "Cabin", Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.4;
     color: #ffffff;
     background-color: #052f40;
 }
-
-
 #navbar-main a,
 .navbar-default .navbar-brand {
     color: #FFFFFF;
     line-height: 20px;
 }
-
-
 #navbar-main{
     margin-left:220px;
 }
-
 .ws-container {
     width: 1000px;
     margin-left: auto;
@@ -366,13 +304,11 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
-
 .ws-container > .navbar-header,
 .ws-container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
 }
-
 .navbar-brand {
     float: left;
     padding: 15px 15px;
@@ -383,12 +319,10 @@ body {
 .navbar-brand:focus {
     text-decoration: none;
 }
-
 .navbar-header{
     float: left;
     width: 220px;
 }
-
 .ws-sidenav {*margin-left:-240px;*margin-top:70px; /* fix ie7*/ }
 .ws-sidenav {
     max-height: 500px;
@@ -418,7 +352,6 @@ body {
 .ws-doc-body{
     margin-left:240px;
 }
-
 .footer{
     text-align:center;
     border-top: solid #2A7A81 2px;
@@ -426,23 +359,19 @@ body {
     margin-bottom: 40px;
     line-height: 40px;
 }
-
 .table {
     border-collapse: collapse;
     border-spacing: 0;
     max-width: 100%;
     background-color: transparent;
 }
-
 th {
     text-align: left;
 }
-
 .table {
     width: 100%;
     margin-bottom: 20px;
 }
-
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -454,12 +383,10 @@ th {
     vertical-align: top;
     border-top: 1px solid #0d747c;
 }
-
 .table > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid #0d747c;
 }
-
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -468,15 +395,12 @@ th {
 .table > thead:first-child > tr:first-child > td {
     border-top: 0;
 }
-
 .table > tbody + tbody {
     border-top: 2px solid #0d747c;
 }
-
 .table .table {
     background-color: #108a93;
 }
-
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
@@ -485,11 +409,9 @@ th {
 .table-condensed > tfoot > tr > td {
     padding: 5px;
 }
-
 .table-bordered {
     border: 1px solid #0d747c;
 }
-
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
@@ -498,34 +420,28 @@ th {
 .table-bordered > tfoot > tr > td {
     border: 1px solid #0d747c;
 }
-
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
     border-bottom-width: 2px;
 }
-
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #0f7f88;
 }
-
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
     background-color: #13a0aa;
 }
-
 .table col[class*="col-"] {
     position: static;
     display: table-column;
     float: none;
 }
-
 .table td[class*="col-"],
 .table th[class*="col-"] {
     display: table-cell;
     float: none;
 }
-
 .table > thead > tr > .active,
 .table > tbody > tr > .active,
 .table > tfoot > tr > .active,
@@ -537,13 +453,11 @@ th {
 .table > tfoot > .active > th {
     background-color: #0d747c;
 }
-
 .table-hover > tbody > tr > .active:hover,
 .table-hover > tbody > .active:hover > td,
 .table-hover > tbody > .active:hover > th {
     background-color: #0b5f65;
 }
-
 .table > thead > tr > .success,
 .table > tbody > tr > .success,
 .table > tfoot > tr > .success,
@@ -555,13 +469,11 @@ th {
 .table > tfoot > .success > th {
     background-color: #48ca3b;
 }
-
 .table-hover > tbody > tr > .success:hover,
 .table-hover > tbody > .success:hover > td,
 .table-hover > tbody > .success:hover > th {
     background-color: #3eb932;
 }
-
 .table > thead > tr > .danger,
 .table > tbody > tr > .danger,
 .table > tfoot > tr > .danger,
@@ -573,13 +485,11 @@ th {
 .table > tfoot > .danger > th {
     background-color: #df6e1e;
 }
-
 .table-hover > tbody > tr > .danger:hover,
 .table-hover > tbody > .danger:hover > td,
 .table-hover > tbody > .danger:hover > th {
     background-color: #c9631b;
 }
-
 .table > thead > tr > .warning,
 .table > tbody > tr > .warning,
 .table > tfoot > tr > .warning,
@@ -591,13 +501,11 @@ th {
 .table > tfoot > .warning > th {
     background-color: #debb27;
 }
-
 .table-hover > tbody > tr > .warning:hover,
 .table-hover > tbody > .warning:hover > td,
 .table-hover > tbody > .warning:hover > th {
     background-color: #ccab1f;
 }
-
 @media (max-width: 767px) {
     .table-responsive {
         width: 100%;
@@ -645,7 +553,6 @@ th {
         border-bottom: 0;
     }
 }
-
 .syntaxhighlighter a,
 .syntaxhighlighter div,
 .syntaxhighlighter code,
@@ -683,7 +590,6 @@ th {
     min-height: inherit !important;
     min-height: auto !important;
 }
-
 .syntaxhighlighter {
     width: 100% !important;
     margin: 1em 0 1em 0 !important;
@@ -856,7 +762,6 @@ th {
 .syntaxhighlighter.printing .break, .syntaxhighlighter.printing .break a {
     color: black !important;
 }
-
 .syntaxhighlighter {
     background-color: white !important;
 }
@@ -954,11 +859,9 @@ th {
 .syntaxhighlighter .color3, .syntaxhighlighter .color3 a {
     color: red !important;
 }
-
 .syntaxhighlighter .keyword {
     font-weight: bold !important;
 }
-
 .syntaxhighlighter {
     padding-bottom: 3px !important;
 }
