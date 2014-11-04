@@ -10,9 +10,10 @@ Hello ${name || "friend"}
 
 ## 下载
 
-+ jar包：[**webit-script.jar**] [jar]
++ jar 包：[**webit-script.jar**] [jar]
 + 源代码：[**webit-script-sources.jar**] [sources]
 + 代码托管: [Github] [github_wit] | [开源中国(oschina.net)][osc_wit]
++ 文档: [本站][this_site]
 
 ## Maven
 
@@ -88,3 +89,5 @@ Hello ${name || "friend"}
 [jodd_license]: http://jodd.org/license.html
 [asm_license]: http://asm.ow2.org/license.html
 
+
+[this_site]: https://github.com/zqq90/zqq90.github.io/archive/master.zip
