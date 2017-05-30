@@ -23,21 +23,21 @@ for  do  while  break  continue
 function  return
 import  include  echo
 native  new  @import
+throw  try  catch  finally
 ~~~~~
 
 ### 保留的关键字
 
 ~~~~~javascript
 static  instanceof  class  final
-throw  try  catch  finally
 ~~~~~
 
 ### 操作符
 > 与Java 保持一致，顺序按优先级从高到低
 
 ~~~~~java
-[] . () @
-=>
+[] . () .~
+=> ->
 !  ~  ++  --  – (取负)
 *  /  %
 +  -
@@ -71,6 +71,8 @@ throw  try  catch  finally
 ~~~~~javascript
 var a;
 var a, b, c=0, d="d";
+var [e,f] = ["e","f"];
+var [g1,g2,g3,g4] = 1..4;
 ~~~~~
 
 #### 常量声明 const
@@ -182,8 +184,8 @@ var new_list = native new java.util.ArrayList();
 var list_add = native java.util.List.add(Object);
 
 var list = new_list();
-list@list_add(0); 
-list@list_add(1);
+list_add(list,0); 
+list_add(list,1);
 
 var a = list[0];
 list[0] = "zero";
@@ -226,8 +228,18 @@ book.name = "new name"; //book.setName("new name");
 
 ~~~~~javascript
 var list_add = native java.util.List.add(Object);
-list@list_add(0);
+list_add(list, 0);
 list_add(list, 1);
+~~~~~
+
+
+> 动态调用成员方法
+
+~~~~~javascript
+list.~add(item);
+list.~add(0, item2);
+list.~clear();
+list.~addAdd(list2);
 ~~~~~
 
 *访问公共静态方法*
@@ -278,9 +290,9 @@ var myFunc = function(arg1, arg2){
 + ~~@import  java.util.*;~~ v1.2.0+ 不再支持导入包
 
 ~~~~~javascript
-@import  java.lang.System; //实际上默认已经导入  java.lang.* 只是演示使用方法
-@import  java.util.List;
-@import  java.util.ArrayList;
+@import java.lang.System; //实际上默认已经导入  java.lang.* 只是演示使用方法
+@import java.util.List;
+@import java.util.ArrayList;
 var now = native java.lang.System.currentTimeMillis();
 var list_add = native List.add(Object);
 var new_list = native new ArrayList(); // 导入 构造函数
@@ -291,17 +303,12 @@ var new_list2 = native new ArrayList(int); // 导入 构造函数
 ### 调用
 
 + 可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身
-+ 缺少的参数将用null补齐,
-+ 可使用@ 将第一个参数 外置
++ 缺少的参数将用 `null` 补齐,
++ ~~可使用@ 将第一个参数 外置~~ v2.0.0+ 不再支持
 
 ~~~~~javascript
 func(arg1, arg2);
-//等同于
-arg1@func(arg2);
-
 list_add(list, item);
-//等同于
-list@list_add(item);
 ~~~~~
 
 ### 重定向输出符 `=>`
@@ -325,7 +332,7 @@ var out;
 // 函数 输出重定向
 func() => out;
 //由于 `=>` 具有较高的优先级，也可以这么些
-var a = arg1@func() => out +1; 
+var a = func(arg1) => out +1; 
 //此时 a为 func()+1 , func() 本次执行的输出内容赋值给out
 ~~~~~
 
@@ -341,27 +348,27 @@ var a = arg1@func() => out +1;
 
 ~~~~~javascript
 //相对路径
-include "./book-head.wtl";
+include "./book-head.wit";
 //等同于 
-include "book-head.wtl";
+include "book-head.wit";
 //绝对路径
-include "/copyright.wtl";
+include "/copyright.wit";
 //动态模板名
 var style = "";
-import "book-list-"+ style  +".wtl";
+import "book-list-"+ style  +".wit";
 //可传入参数 函数同样也可以作为变量传输
 var func = function(){}; 
 var book;
-import "book-head.wtl"  {"book": book, "func":func};
+import "book-head.wit"  {"book": book, "func":func};
 //传入Map 变量作为参数
 var map =  {"book": book, "func":func}；
 map["one"] = 1; 
-import "book-head.wtl"  {map};
+import "book-head.wit"  {map};
 //导出指定变量
 var a;
 var b;
 //导出 : a 到a ，c 到 b
-import "book-head.wtl"  {"param1":1}  a,b=c;
+import "book-head.wit"  {"param1":1}  a,b=c;
 ~~~~~
 
 ### 关于条件判断的三种情况
@@ -375,12 +382,10 @@ import "book-head.wtl"  {"param1":1}  a,b=c;
 ### 三元条件运算符 & 其简写
 
 + **操作符按 自右向左 结合, 详解看下面例子**
-+ **简写时 `?:` 之间没有空白字符**
++ ~~简写时 `?:` 之间没有空白字符~~ v2.0.0+ 不再支持, 请使用 `||` 代替
 
 ~~~~~javascript
 var a1 = isTrue ? "Yes" : "No";
-//简写
-var a2 = value ?: defaultValue; //取默认值
 
 //自右向左 结合
 var x =  expr1 ?  expr3 :  expr2 ? expr4 : expr5;
@@ -388,8 +393,6 @@ var x =  expr1 ?  expr3 :  expr2 ? expr4 : expr5;
 var x =  expr1 ?  expr3 :  (expr2 ? expr4 : expr5);
 // 如果 是 自左向右 就会变成这样
 var x =  (expr1 ?  expr3 :  expr2) ? expr4 : expr5;
-//简写 从左向右 
-var a4 = list1 ?: list2 ?: list3;
 ~~~~~
 
 ### 判断语句
@@ -514,4 +517,26 @@ outter: for(i: 6..3){
 }
 ~~~~~
 
+### Lambda 表达式
+
+> 可以认为是 function(..){..} 的简写
+
+~~~~~js
+()->0;
+//等同与
+()->{ return 0; };
+
+// 下面几组也分别是等同的
+x -> x > 2 || x < 8;
+x -> (x > 2 || x < 8);
+x -> {return x > 2 || x < 8;};
+(x) -> x > 2 || x < 8;
+
+(x, y, z) -> x > y || x < z;
+(x, y, z) -> {return x > y || x < z;});
+
+//注意： 你可能会发现，这里会有一个歧义，实际上是个返回一个空map的函数, 而不是一个空函数
+()->{};
+~~~~~
+ 
 ### 正在完善。。。

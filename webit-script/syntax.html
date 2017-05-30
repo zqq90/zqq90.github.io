@@ -26,20 +26,20 @@
 </div>
 </div>
 </div>
-<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">整体结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量/常量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-20">函数</a></li><li><a href="#section-22">调用</a></li><li><a href="#section-23">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-24">关于条件判断的三种情况</a></li><li><a href="#section-25">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-26">判断语句</a></li><li><a href="#section-27">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break--continue">break &amp; continue</a></li><li><a href="#section-28">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
+<div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">整体结构</a></li><li><a href="#section-1">注释</a></li><li><a href="#section-2">关键字</a></li><li><a href="#section-3">保留的关键字</a></li><li><a href="#section-4">操作符</a></li><li><a href="#section-5">语句</a></li><li><a href="#section-6">作用域(代码段) <code>{ }</code></a></li><li><a href="#section-7">变量/常量</a></li><li><a href="#section-9">数据结构</a></li><li><a href="#section-12">数字</a></li><li><a href="#section-13">布尔</a></li><li><a href="#section-14">数组</a></li><li><a href="#map">Map</a></li><li><a href="#java">Java对象</a></li><li><a href="#section-20">函数</a></li><li><a href="#section-22">调用</a></li><li><a href="#section-23">重定向输出符 <code>=&gt;</code></a></li><li><a href="#import--include">import &amp; include</a></li><li><a href="#section-24">关于条件判断的三种情况</a></li><li><a href="#section-25">三元条件运算符 &amp; 其简写</a></li><li><a href="#section-26">判断语句</a></li><li><a href="#section-27">循环控制语句</a></li><li><a href="#switch">Switch</a></li><li><a href="#break--continue">break &amp; continue</a></li><li><a href="#lambda-">Lambda 表达式</a></li><li><a href="#section-28">正在完善。。。</a></li></ul></div><div class="ws-doc-body" >
 <h3 id="section">整体结构</h3>
 
 <ul>
-  <li>采用 <code>&lt;% %&gt;</code>隔离代码和文本，采用<code>${}</code>在文本中进行插值操作 </li>
-  <li><code>&lt;%</code> <code>${</code> 分隔符均可以被转义, 如:  <code>\&lt;%</code> <code>\${</code> </li>
+  <li>采用 <code>&lt;% %&gt;</code>隔离代码和文本，采用<code>${}</code>在文本中进行插值操作</li>
+  <li><code>&lt;%</code> <code>${</code> 分隔符均可以被转义, 如:  <code>\&lt;%</code> <code>\${</code></li>
   <li>单独遇到 <code>&lt;</code> <code>$</code>  不需要转译</li>
 </ul>
 
 <h3 id="section-1">注释</h3>
 
 <ul>
-  <li>单行注释 <code>//</code> </li>
-  <li>块注释 <code>/* */</code> </li>
+  <li>单行注释 <code>//</code></li>
+  <li>块注释 <code>/* */</code></li>
 </ul>
 
 <h3 id="section-2">关键字</h3>
@@ -51,12 +51,12 @@ for  do  while  break  continue
 function  return
 import  include  echo
 native  new  @import
+throw  try  catch  finally
 </pre>
 
 <h3 id="section-3">保留的关键字</h3>
 
 <pre class="brush: javascript;">static  instanceof  class  final
-throw  try  catch  finally
 </pre>
 
 <h3 id="section-4">操作符</h3>
@@ -64,8 +64,8 @@ throw  try  catch  finally
   <p>与Java 保持一致，顺序按优先级从高到低</p>
 </blockquote>
 
-<pre class="brush: java;">[] . () @
-=&gt;
+<pre class="brush: java;">[] . () .~
+=&gt; -&gt;
 !  ~  ++  --  – (取负)
 *  /  %
 +  -
@@ -102,6 +102,8 @@ throw  try  catch  finally
 
 <pre class="brush: javascript;">var a;
 var a, b, c=0, d="d";
+var [e,f] = ["e","f"];
+var [g1,g2,g3,g4] = 1..4;
 </pre>
 
 <h4 id="const">常量声明 const</h4>
@@ -212,8 +214,8 @@ var new_list = native new java.util.ArrayList();
 var list_add = native java.util.List.add(Object);
 
 var list = new_list();
-list@list_add(0); 
-list@list_add(1);
+list_add(list,0); 
+list_add(list,1);
 
 var a = list[0];
 list[0] = "zero";
@@ -254,8 +256,18 @@ book.name = "new name"; //book.setName("new name");
 </blockquote>
 
 <pre class="brush: javascript;">var list_add = native java.util.List.add(Object);
-list@list_add(0);
+list_add(list, 0);
 list_add(list, 1);
+</pre>
+
+<blockquote>
+  <p>动态调用成员方法</p>
+</blockquote>
+
+<pre class="brush: javascript;">list.~add(item);
+list.~add(0, item2);
+list.~clear();
+list.~addAdd(list2);
 </pre>
 
 <p><em>访问公共静态方法</em></p>
@@ -280,7 +292,7 @@ var f2 = native StaticFields.field2;
 
 <ul>
   <li>格式同java</li>
-  <li>可变参数, </li>
+  <li>可变参数,</li>
   <li>可通过 arguments 获得所有传入的参数, java类型为 Object[]</li>
   <li>可访问父层作用域</li>
   <li>函数内部可嵌套函数</li>
@@ -305,9 +317,9 @@ var myFunc = function(arg1, arg2){
   <li>~~@import  java.util.*;~~ v1.2.0+ 不再支持导入包</li>
 </ul>
 
-<pre class="brush: javascript;">@import  java.lang.System; //实际上默认已经导入  java.lang.* 只是演示使用方法
-@import  java.util.List;
-@import  java.util.ArrayList;
+<pre class="brush: javascript;">@import java.lang.System; //实际上默认已经导入  java.lang.* 只是演示使用方法
+@import java.util.List;
+@import java.util.ArrayList;
 var now = native java.lang.System.currentTimeMillis();
 var list_add = native List.add(Object);
 var new_list = native new ArrayList(); // 导入 构造函数
@@ -318,17 +330,12 @@ var new_list2 = native new ArrayList(int); // 导入 构造函数
 
 <ul>
   <li>可变参数个数, 多余函数同样会被传入, 多余函数是否被使用 取决于函数本身</li>
-  <li>缺少的参数将用null补齐,</li>
-  <li>可使用@ 将第一个参数 外置</li>
+  <li>缺少的参数将用 <code>null</code> 补齐,</li>
+  <li>~~可使用@ 将第一个参数 外置~~ v2.0.0+ 不再支持</li>
 </ul>
 
 <pre class="brush: javascript;">func(arg1, arg2);
-//等同于
-arg1@func(arg2);
-
 list_add(list, item);
-//等同于
-list@list_add(item);
 </pre>
 
 <h3 id="section-23">重定向输出符 <code>=&gt;</code></h3>
@@ -353,7 +360,7 @@ var out;
 // 函数 输出重定向
 func() =&gt; out;
 //由于 `=&gt;` 具有较高的优先级，也可以这么些
-var a = arg1@func() =&gt; out +1; 
+var a = func(arg1) =&gt; out +1; 
 //此时 a为 func()+1 , func() 本次执行的输出内容赋值给out
 </pre>
 
@@ -369,27 +376,27 @@ var a = arg1@func() =&gt; out +1;
 </ul>
 
 <pre class="brush: javascript;">//相对路径
-include "./book-head.wtl";
+include "./book-head.wit";
 //等同于 
-include "book-head.wtl";
+include "book-head.wit";
 //绝对路径
-include "/copyright.wtl";
+include "/copyright.wit";
 //动态模板名
 var style = "";
-import "book-list-"+ style  +".wtl";
+import "book-list-"+ style  +".wit";
 //可传入参数 函数同样也可以作为变量传输
 var func = function(){}; 
 var book;
-import "book-head.wtl"  {"book": book, "func":func};
+import "book-head.wit"  {"book": book, "func":func};
 //传入Map 变量作为参数
 var map =  {"book": book, "func":func}；
 map["one"] = 1; 
-import "book-head.wtl"  {map};
+import "book-head.wit"  {map};
 //导出指定变量
 var a;
 var b;
 //导出 : a 到a ，c 到 b
-import "book-head.wtl"  {"param1":1}  a,b=c;
+import "book-head.wit"  {"param1":1}  a,b=c;
 </pre>
 
 <h3 id="section-24">关于条件判断的三种情况</h3>
@@ -405,12 +412,10 @@ import "book-head.wtl"  {"param1":1}  a,b=c;
 
 <ul>
   <li><strong>操作符按 自右向左 结合, 详解看下面例子</strong></li>
-  <li><strong>简写时 <code>?:</code> 之间没有空白字符</strong></li>
+  <li>~~简写时 <code>?:</code> 之间没有空白字符~~ v2.0.0+ 不再支持, 请使用 <code>||</code> 代替</li>
 </ul>
 
 <pre class="brush: javascript;">var a1 = isTrue ? "Yes" : "No";
-//简写
-var a2 = value ?: defaultValue; //取默认值
 
 //自右向左 结合
 var x =  expr1 ?  expr3 :  expr2 ? expr4 : expr5;
@@ -418,8 +423,6 @@ var x =  expr1 ?  expr3 :  expr2 ? expr4 : expr5;
 var x =  expr1 ?  expr3 :  (expr2 ? expr4 : expr5);
 // 如果 是 自左向右 就会变成这样
 var x =  (expr1 ?  expr3 :  expr2) ? expr4 : expr5;
-//简写 从左向右 
-var a4 = list1 ?: list2 ?: list3;
 </pre>
 
 <h3 id="section-26">判断语句</h3>
@@ -498,7 +501,7 @@ do{
 <h3 id="switch">Switch</h3>
 
 <ul>
-  <li>支持普通 Object, 包括 String </li>
+  <li>支持普通 Object, 包括 String</li>
   <li>使用 <code>Object.equls()</code> 判断是否相等</li>
   <li>需要 break, 否则无条件继续执行下一个标签的句柄</li>
   <li>每个case 命名空间独立</li>
@@ -544,6 +547,29 @@ outter: for(i: 6..3){
         ...;
     }
 }
+</pre>
+
+<h3 id="lambda-">Lambda 表达式</h3>
+
+<blockquote>
+  <p>可以认为是 function(..){..} 的简写</p>
+</blockquote>
+
+<pre class="brush: js;">()-&gt;0;
+//等同与
+()-&gt;{ return 0; };
+
+// 下面几组也分别是等同的
+x -&gt; x &gt; 2 || x &lt; 8;
+x -&gt; (x &gt; 2 || x &lt; 8);
+x -&gt; {return x &gt; 2 || x &lt; 8;};
+(x) -&gt; x &gt; 2 || x &lt; 8;
+
+(x, y, z) -&gt; x &gt; y || x &lt; z;
+(x, y, z) -&gt; {return x &gt; y || x &lt; z;});
+
+//注意： 你可能会发现，这里会有一个歧义，实际上是个返回一个空map的函数, 而不是一个空函数
+()-&gt;{};
 </pre>
 
 <h3 id="section-28">正在完善。。。</h3>

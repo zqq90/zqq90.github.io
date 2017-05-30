@@ -29,14 +29,16 @@
 <div class="ws-container ws-doc-main-body"><div class="ws-sidenav"><ul class="nav"><li><a href="#section">1. 如何获取帮助？</a></li><li><a href="#section-1">2. 为什么不做编译执行？</a></li><li><a href="#layout">3. 如何实现layout特性？</a></li><li><a href="#native">4. 如何理解 Native？</a></li></ul></div><div class="ws-doc-body" ><h3 id="section">1. 如何获取帮助？</h3>
 
 <blockquote>
-  <p>Webit Script 官方QQ群: 302505483 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=7be9d8a59a8533b7c2837bdc22295b4b47c65384eda323971cf5f3b9943ad9db"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="QQ群: 302505483" title="QQ群: 302505483" /></a></p>
+  <p>Febit Wit 官方QQ群: 302505483 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=7be9d8a59a8533b7c2837bdc22295b4b47c65384eda323971cf5f3b9943ad9db"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="QQ群: 302505483" title="QQ群: 302505483" /></a></p>
 </blockquote>
 
 <h3 id="section-1">2. 为什么不做编译执行？</h3>
 <blockquote>
-  <p>1.现在使用编译执行，性能已经很理想了。大约是解释执行的50%-75%。
-2.Webit Script把功能放在第一位，其次才是性能。
-3.解释执行、编译执行很难保持预期结果的完全一致，而且编译执行更容易产生Bug。</p>
+  <ol>
+    <li>现在使用编译执行，性能已经很理想了。大约是解释执行的50%-75%。</li>
+    <li>Wit 把可用性放在第一位，其次才是性能。</li>
+    <li>解释执行、编译执行很难保持预期结果的完全一致，而且编译执行相对更容易产生 Bug。</li>
+  </ol>
 </blockquote>
 
 <h3 id="layout">3. 如何实现layout特性？</h3>
@@ -48,40 +50,38 @@
   <p>1.在公共模板定义一个 layout 函数</p>
 </blockquote>
 
-<pre class="brush: js;">&lt;%
-var layout=function(nested){
-%&gt;
-&lt;html&gt;
-    &lt;body&gt;
-	&lt;% nested(); %&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+<p>```js
 &lt;%
+var layout=(nested)-&gt;{ // A function
+%&gt;</p>
+<html>
+    <body>
+	&lt;% nested(); %&gt;
+    </body>
+</html>
+<p>&lt;%
 }; //end layout
 %&gt;
-</pre>
-<blockquote>
-  <p>2.使用import导入函数layout</p>
-</blockquote>
+```
+&gt; 2.使用import导入函数layout</p>
 
 <blockquote>
   <p>3.最后，使用layout，传入一个匿名函数作为参数</p>
 </blockquote>
 
-<pre class="brush: js;">&lt;% layout(function{ %&gt;
-Hello Webit!
+<p><code>js
+&lt;% layout(()-&gt;{ %&gt;
+Hello Wit!
 &lt;% }); %&gt;
-</pre>
-<blockquote>
-  <p>技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
-</blockquote>
+</code>
+&gt; 技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
 
 <h3 id="native">4. 如何理解 Native？</h3>
 <blockquote>
   <p>native 实际上是为了隔离Java采用的一种方式。
 native 得到的是对java函数/字段的引用。
 需要注意的是：
-&gt; 对于 native得到的函数，可以当作function使用，通过传参得到结果，但是要保持参数类型与引用的java方法一致</p>
+&gt; 对于 native 得到的函数，可以当作 function 使用，通过传参得到结果，但是要保持参数类型与引用的java方法一致</p>
 </blockquote>
 </div>
 <div class="footer">

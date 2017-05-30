@@ -1,7 +1,7 @@
-## Hello word
+## Hello Wit
 
 ~~~~~javascript
-Hello Webit Script!
+Hello Febit Wit!
 <%
     var books;
     //遍历集合
@@ -29,6 +29,8 @@ ${for.iter.index}.《${book.name}》 ￥${book.price}
     };
     //map 读写
     map[5] = 2 + 3;
+    // 调用成员函数
+    map.~put("6",2*3);
     //map 遍历
     for(key, value : map){
         //输出
@@ -42,16 +44,17 @@ ${for.iter.index}.《${book.name}》 ￥${book.price}
 ## 调用示例
 ~~~~~java
 // engine 并不会被缓存, 请根据需要缓存 Engine 实例
-Engine engine = Engine.create("/webit-script-config.props", extraSettingsMap);
+Engine engine = Engine.create("/wit-engine.wim", extraSettingsMap);
 
 // template 会缓存在 engine 中, 线程安全
-Template template = engine.getTemplate("/your/template/path/filename.ext");
+Template template = engine.getTemplate("/path/to/demo.wit");
 
 //输出out可以是 OutputStream 或者 Writer
 template.merge(paramsMap, out); 
 ~~~~~
 
 ## MVC视图集成
+
 + Jodd Madvoc
 + JFinal
 + Spring MVC
@@ -61,6 +64,6 @@ template.merge(paramsMap, out);
 [示例代码][mvc-demo]
 
 
-[tests]: https://github.com/zqq90/webit-script/tree/master/webit-script/src/test/resources/webit/script/test/tmpls
+[tests]: https://github.com/febit/wit/tree/master/wit-core/src/test/resources/org/febit/wit/test/tmpls
 
 [mvc-demo]: https://github.com/zqq90/webitscript-mvc-demo

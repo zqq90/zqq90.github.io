@@ -43,7 +43,7 @@
 <h2 id="jsp-taglib-function">使用JSP TagLib Function</h2>
 
 <blockquote>
-  <p>引入webit-script-tools-[version].jar 包</p>
+  <p>引入wit-tools-[version].jar 包</p>
 </blockquote>
 
 <blockquote>
@@ -111,7 +111,7 @@ prefix=pre_
 <h2 id="lib-typewim">标准库：lib-type.wim</h2>
 
 <blockquote>
-  <p>位置: webit-script-tools-[version].jar。(1.0.0版本以上)，用于判断值的类型。</p>
+  <p>位置: wit-tools-[version].jar。(1.0.0版本以上)，用于判断值的类型。</p>
 </blockquote>
 
 <blockquote>
@@ -135,17 +135,26 @@ prefix=pre_
 <h2 id="lib-tldwim">类型库：lib-tld.wim</h2>
 
 <blockquote>
-  <p>位置: webit-script-tools-[version].jar。(1.0.0版本以上)，提供对JSP TagLib Function。</p>
+  <p>位置: wit-tools-[version].jar。(1.0.0版本以上)，提供对JSP TagLib Function。</p>
 </blockquote>
 
 <blockquote>
-  <p>使用方法：（见上节）</p>
+  <p>使用方法：</p>
 </blockquote>
+
+<pre>[global]
+registers+=tld-demo
+
+[tld-demo: org.febit.wit.tools.tld.TLDGlobalRegister]
+checkAccess=false
+tld=
+prefix=
+</pre>
 
 <h2 id="lib-cachewim">标准库：lib-cache.wim</h2>
 
 <blockquote>
-  <p>位置: webit-script-tools-[version].jar。(1.0.0版本以上)，提供对片段缓存的支持。</p>
+  <p>位置: wit-tools-[version].jar。(1.0.0版本以上)，提供对片段缓存的支持。</p>
 </blockquote>
 
 <ul>
@@ -158,19 +167,24 @@ prefix=pre_
   <p>使用方法：</p>
 </blockquote>
 
+<pre>@modules +='''
+  lib-cache.wim
+'''
+</pre>
+
 <h4 id="section-2">配置</h4>
 
 <pre>## 注册全局函数
-[webit.script.tools.cache.CacheGlobalRegister]
+[org.febit.wit.tools.cache.CacheGlobalRegister]
 # 函数注册的名称，默认为cache
 name=cache
 # 是否注册 cache_clear() 函数，默认为false
 registCacheClear=true
 # 选择Cache的供应组件
-cacheProvider=webit.script.tools.cache.impl.SimpleCacheProvider
+cacheProvider=simpleCacheProvider
 
 ## 配置自带的Cache的供应组件
-[webit.script.tools.cache.impl.SimpleCacheProvider]
+[simpleCacheProvider]
 # 缓存有效时间，单位: 毫秒
 timeToLive =6000000
 </pre>
@@ -182,7 +196,7 @@ timeToLive =6000000
 <pre>## 选择Cache的供应组件（略）
 
 ## 配置 Ehcache 供应组件
-[webit.script.tools.cache.impl.EhcacheProvider]
+[ehcacheProvider]
 # 使用的Ehcache的配置名称
 cacheName=myEhcacheName
 </pre>
@@ -191,14 +205,14 @@ cacheName=myEhcacheName
 
 <pre class="brush: javascript;">&lt;%
 // 嵌入函数的
-cache(function{
+cache(()-&gt;{
 %&gt;
 Hello Cache
 &lt;%
 return null;
 });
 
-var func = function{
+var func = ()-&gt;{
 %&gt;
 Hello Cache
 &lt;%

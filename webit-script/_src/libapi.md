@@ -13,7 +13,7 @@
 
 ## 使用JSP TagLib Function
 
-> 引入webit-script-tools-[version].jar 包
+> 引入wit-tools-[version].jar 包
 
 > 配置文件添加TLD的全局变量注册器，并配置该注册器：
 
@@ -66,7 +66,7 @@ prefix=pre_
 
 ## 标准库：lib-type.wim
 
-> 位置: webit-script-tools-[version].jar。(1.0.0版本以上)，用于判断值的类型。
+> 位置: wit-tools-[version].jar。(1.0.0版本以上)，用于判断值的类型。
 
 > 使用方法：
 
@@ -86,14 +86,24 @@ prefix=pre_
 
 ## 类型库：lib-tld.wim
 
-> 位置: webit-script-tools-[version].jar。(1.0.0版本以上)，提供对JSP TagLib Function。
+> 位置: wit-tools-[version].jar。(1.0.0版本以上)，提供对JSP TagLib Function。
 
-> 使用方法：（见上节）
+> 使用方法：
+
+~~~~~
+[global]
+registers+=tld-demo
+
+[tld-demo: org.febit.wit.tools.tld.TLDGlobalRegister]
+checkAccess=false
+tld=
+prefix=
+~~~~~
 
 
 ## 标准库：lib-cache.wim
 
-> 位置: webit-script-tools-[version].jar。(1.0.0版本以上)，提供对片段缓存的支持。
+> 位置: wit-tools-[version].jar。(1.0.0版本以上)，提供对片段缓存的支持。
 
 + cache(key, func, ...func_args)  其中key，func_args为可选参数, 缓存函数func执行后的返回结果以及输出内容，同时输出并缓存。当存在缓存时，将直接返回缓存中的返回值，输出缓存中的输出，不会再次执行指定函数。
 + cache_remove(key)  移除指定key的缓存。
@@ -101,20 +111,26 @@ prefix=pre_
 
 > 使用方法：
 
+~~~~~
+@modules +='''
+  lib-cache.wim
+'''
+~~~~~
+
 #### 配置
 
 ~~~~~
 ## 注册全局函数
-[webit.script.tools.cache.CacheGlobalRegister]
+[org.febit.wit.tools.cache.CacheGlobalRegister]
 # 函数注册的名称，默认为cache
 name=cache
 # 是否注册 cache_clear() 函数，默认为false
 registCacheClear=true
 # 选择Cache的供应组件
-cacheProvider=webit.script.tools.cache.impl.SimpleCacheProvider
+cacheProvider=simpleCacheProvider
 
 ## 配置自带的Cache的供应组件
-[webit.script.tools.cache.impl.SimpleCacheProvider]
+[simpleCacheProvider]
 # 缓存有效时间，单位: 毫秒
 timeToLive =6000000
 ~~~~~
@@ -125,7 +141,7 @@ timeToLive =6000000
 ## 选择Cache的供应组件（略）
 
 ## 配置 Ehcache 供应组件
-[webit.script.tools.cache.impl.EhcacheProvider]
+[ehcacheProvider]
 # 使用的Ehcache的配置名称
 cacheName=myEhcacheName
 ~~~~~
@@ -135,14 +151,14 @@ cacheName=myEhcacheName
 ~~~~~javascript
 <%
 // 嵌入函数的
-cache(function{
+cache(()->{
 %>
 Hello Cache
 <%
 return null;
 });
 
-var func = function{
+var func = ()->{
 %>
 Hello Cache
 <%

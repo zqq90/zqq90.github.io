@@ -1,74 +1,119 @@
 ## 哪些组件可以配置？
-Webit script 采用IoC的机制管理组件，也就是说只要是提供了setter的组件，随处都可以配置。当前现在支持属性值自动转换为以下类型：String, class, int/Integer, boolean/Boolean，以及他们的数组形式。
+Febit Wit 采用IoC的机制管理组件，也就是说只要是提供了setter的组件，随处都可以配置。当前现在支持属性值自动转换为以下类型：String, class, int/Integer, boolean/Boolean，以及他们的数组形式。
 例如：
 
 ~~~~~
 # 格式为 key = value
 # 设置输出编码 Engine.setEncoding(String)
 engine.encoding=UTF-8
-# 设置过滤器类 Engine.setFilterClass(Class)
-engine.filter=webit.script.filters.impl.MutiFilter
 # 设置默认面声明变量 Engine.setVars(String[])
 engine.vars=request, response
 ~~~~~
 
-> 这是一个开放的注入管理器，只要需要，就可以把配置写在这里面，然后通过Engine.getComponent(type)得到配置的实例
+> 这是一个开放的注入管理器，只要需要，就可以把配置写在这里面，然后通过Engine.get(type)得到配置的实例
 
-> 如果继承了`webit.script.Initable` 同时还会在配置注入完成之后执行`init(Engine)`, 您可以继续使用传入的Engine完成其他初始化工作，或者使用Engine.getComponent(type)进一步得到依赖的下一个组件
+> 组件如果标记了 `@org.febit.wit.Init 同时还会在配置注入完成之后执行
 
 
 ## 获取引擎实例
 
-> `Engine.createEngine("配置文件列表", 额外的参数Map)`
+> `Engine.create("配置文件列表", 额外的参数Map)`
 
 ### 1.配置文件列表
 
 + 配置文件之间用`,`分割
 + 配置文件需要放在ClassPath下
 + 配置文件按先后顺序被附加或者覆盖
-+ 配置事先加载了ClassPath下的`/webit-script-default.props`，不需要另行设置
-+ 如果配置文件不存在或者加载失败不会报错，加载成功的配置文件将会通过Logger.info() 按加载顺序打印
++ 配置事先加载了ClassPath下的`/default.wim`，不需要另行设置
++ 如果配置文件不存在或者加载失败会报错，加载成功的配置文件将会通过Logger.info() 按加载顺序打印
 
-> 缺省配置文件:[webit-script-default.props][default_config]
+> 缺省配置文件:[default.wim][default_config]
 
 ### 2.额外的参数Map
+
 + 可以为null
 + 额外的参数如果是String,会附加/覆盖到props配置，使用的插值`${}`会生效
 + 额外参数默认是采取覆盖策略，如果使用附加请在key后面附加`+`,例如`engine.resolvers+`
 + 如果值不是String类型的，会被原样保留并注入到指定的组件中。
 
-## 一段配置文件节选
+## 一段配置文件节选（仅演示，非实际配置）
 ~~~~~
 # 以#开头的是行注释
+
 
 # 设置了一个数值
 DEFAULT_ENCODING=UTF-8
 
+# @开头的一般都有特殊意义
+# 依赖的模块列表
+@modules=
+
 # 设置一个参数: 类型.字段名=值
 # 和 properties 一样
-engine.suffix=.wit
+engine.looseVar=false
 
-# 这里先设置区段 []， 这样就可以简短书写了
-[engine]
+# 例如 @global 被用来声明哪些是全局组件
+# IoC 会自动注入到需要这些组件的字段，例如 NativeFactory.nativeSecurityManager
+@global='''
+    engine
+    logger
+    loader
+    resolverManager
+    textStatement
+    global
+'''
+
+# 这里先设置区段 [engine]， 这样就可以简短书写了
+# 区段中 : 用来定义类型继承自那个类型
+#   也可以是定义过类型的区段（实例化的时候总得一层层找到他的类型， 对吧。）
+[engine :org.febit.wit.Engine]
 encoding=${DEFAULT_ENCODING}
-resourceLoader=webit.script.loaders.impl.ClasspathLoader
-filter=webit.script.filters.impl.MutiFilter
+# looseVar=false
+# trimCodeBlockBlankLine=true
+# vars=
+# inits=
+# shareRootData=true
+
+# 这里就是个例子，loader 继承自routeLoader包括类型和其他参数
+# 另外还记得前面 loader 被添加到全局组件了吧
+# 不要担心会有多个 routeLoader, 如果没有`Engine.get("routeLoader")`, 它只是个配置，并不会被实例化
+# 不过， Engine.get("loader") 和 Engine.get("routeLoader") 不是同一个实例
+# 这个继承关系可以在以后被覆盖，无状态，不会有之前的继承参数
+# 例如 改成 [loader :servletLoader]
+[loader :routeLoader]
+[logger :simpleLogger]
+[textStatement :simpleTextStatement]
+
+# 下面你可以当做是定义了别名， 以后就可以使用别名了，不用写包名，是不是很省劲
+[simpleLogger :org.febit.wit.loggers.impl.SimpleLogger]
+[slf4jLogger :org.febit.wit.loggers.impl.Slf4jLogger]
+[commonLogger :org.febit.wit.loggers.impl.CommonLogger]
+
+[pathLoader]
+encoding=${DEFAULT_ENCODING}
+assistantSuffixs+=.wit
+suffix=.wit
+# appendLostSuffix=false
+# root=your/template/path
+
+[classpathLoader :org.febit.wit.loaders.impl.ClasspathLoader]
+# @extends 仅仅会把参数继承过来，不会继承类型，覆盖无状态，可以是个列表
+@extends=pathLoader
+
+[stringLoader :org.febit.wit.loaders.impl.StringLoader]
 
 # 为了更直观可以使用 \ 转义看不见的换行符
 # 当然不换行也是可以的
+[resolverManager]
 resolvers=\
-    webit.script.resolvers.impl.MapResolver,\
-    webit.script.resolvers.impl.ListResolver
+  org.febit.wit.resolvers.impl.LongOutResolver,\
+  org.febit.wit.resolvers.impl.IntegerOutResolver
 
-# 另一个类型的配置
-[webit.script.loaders.impl.ClasspathLoader]
 # 这里 "DEFAULT_ENCODING" 又被使用了一次
-encoding=${DEFAULT_ENCODING}
-
 # 先设置区段[]为空
 []
 # 又可以使用完整的“类型.字段名”了
-webit.script.resolvers.ResolverManager.enableAsm=true
+resolverManager.ignoreNullPointer=true
 ~~~~~
 
 ## 关于配置文件
@@ -77,7 +122,7 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 ### 区段头
 + 区段头不一定非要是类型名，段头只作为区段头下的所有配置的前缀（附加一个点`.`）
 
-### 使用插值
+### 使用插值（宏）
 + 例如例子中的`DEFAULT_ENCODING`
 
 ### 多行模式
@@ -85,8 +130,9 @@ webit.script.resolvers.ResolverManager.enableAsm=true
 + 类型列表 的分隔符可以是`,` 或者换行，并忽略首位空格
 ~~~~~
 list += '''
-  webit.script.resolvers.impl.MapResolver
-  webit.script.resolvers.impl.ListResolver
+  org.febit.wit.resolvers.impl.LongOutResolver
+  org.febit.wit.resolvers.impl.IntegerOutResolver
+  org.febit.wit.resolvers.impl.InternalVoidResolver
 '''
 ~~~~~
 
@@ -99,12 +145,10 @@ list += '''
 ### 属性继承
 
 ~~~~~
-[webit.script.Engine]
-@extends=engine
+[classpathLoader :org.febit.wit.loaders.impl.ClasspathLoader]
+@extends=pathLoader
 ~~~~~
-这样将会使得webit.script.Engine继承所有以"engine."开头的所有配置
-
-> 这也正是为什么配置文件使用 [engine] 代替 [webit.script.Engine] 的原因
+这样将会使得 classpathLoader 继承所有以"pathLoader."开头的所有配置
 
 > 注意：这种继承之间的附加操作"+=" 是无效的，原生的将直接覆盖掉继承来的值
 
@@ -137,11 +181,6 @@ lib-cache.wim
 	<td>输出编码</td>
 </tr>
 <tr>
-	<td>engine.resourceLoader</td>
-	<td>类型</td>
-	<td>资源加载器</td>
-</tr>
-<tr>
 	<td>engine.looseVar</td>
 	<td>Boolean</td>
 	<td>是否启用宽松的变量声明</td>
@@ -155,21 +194,6 @@ lib-cache.wim
 	<td>engine.textStatementFactory</td>
 	<td>类型</td>
 	<td>TextStatment生成器</td>
-</tr>
-<tr>
-	<td>engine.appendLostSuffix</td>
-	<td>Boolean</td>
-	<td>是否自动添加丢失的后缀</td>
-</tr>
-<tr>
-	<td>engine.assistantSuffixs</td>
-	<td>字符串列表</td>
-	<td>辅助后缀</td>
-</tr>
-<tr>
-	<td>engine.suffix</td>
-	<td>字符串</td>
-	<td>后缀</td>
 </tr>
 <tr>
 	<td>engine.vars</td>
@@ -192,19 +216,14 @@ lib-cache.wim
 	<td>日志输出器</td>
 </tr>
 <tr>
-	<td>routeLoader-main.default</td>
+	<td>routeLoader.defaultLoader</td>
 	<td>类型</td>
 	<td>路由加载器的缺省加载器</td>
 </tr>
 <tr>
-	<td>routeLoader-main.loaders</td>
+	<td>routeLoader.loaders</td>
 	<td>路由规则</td>
 	<td>路由加载器的路由规则</td>
-</tr>
-<tr>
-	<td>nativeFactory.enableAsm</td>
-	<td>Boolean</td>
-	<td>是否允许ASM优化Native</td>
 </tr>
 <tr>
 	<td>resolverManager.resolvers</td>
@@ -215,11 +234,6 @@ lib-cache.wim
 	<td>resolverManager.ignoreNullPointer</td>
 	<td>Boolean</td>
 	<td>是否忽略属性读取时bean为null的异常</td>
-</tr>
-<tr>
-	<td>resolverManager.enableAsm</td>
-	<td>Boolean</td>
-	<td>bean解释器是否启用ASM</td>
 </tr>
 <tr>
 	<td>global.registers</td>
@@ -236,60 +250,76 @@ lib-cache.wim
 ## 资源加载器加载器
 
 ### 基本的资源加载器
-+ Classpath `webit.script.loaders.impl.ClasspathLoader`
-+ Web 根目录 `webit.script.web.loaders.ServletLoader`
-+ 普通文件系统 `webit.script.loaders.impl.FileLoader`
-+ String类型的模板  `webit.script.loaders.impl.StringLoader`
+
++ Classpath `classpathLoader`
++ Web 根目录 `servletLoader`
++ 普通文件系统 `fileLoader`
++ String类型的模板  `stringLoader`
 
 ~~~~~~
 ## Classpath 资源加载
 [classpathLoader]
-@extends=loader
 # 模板根路径
 root=your/template/path
 
 ## Web 根目录 资源加载
 [servletLoader]
-@extends=loader
 root=/your/template/path
 
 ## 普通文件系统 资源加载
-[webit.script.loaders.impl.FileLoader]
-@extends=loader
+[fileLoader]
 root=/your/template/path
 ~~~~~~
 
-### Loader路由：RouteLoader
+### Loader路由：routeLoader
 
 + 根据进行前缀的贪婪匹配
 + 匹配的Loader之后 会删除设置的前缀
 + 理论上可以使用任意前缀
 + 可以设置失败后缺省的Loader
-+ 同一个Loader实例可以设置多个匹配的前缀（归功于Engine.getComponent(type)）
++ 同一个Loader实例可以设置多个匹配的前缀
 
 ~~~~~
-[webit.script.loaders.impl.RouteLoader-main]
+# 新增两个 loader， 继承自 classpathLoader
+[classpathLoader-root :classpathLoader]
+[classpathLoader-root2 :classpathLoader]
+
+# 同上，还可以修改参数
+[codeLoader :stringLoader]
+codeFirst=true
+
+# routeLoader 已经配置为全局 loader
+# [loader :routeLoader]
+# 改成其他的可以使用:
+# [loader :classpathLoader]
+# ^ 这样 所有资源直接使用 classpathLoader 来加载，不会走 routeLoader
+
+[routeLoader]
 # 缺省的Loader
-default=webit.script.loaders.impl.ClasspathLoader
+default=classpathLoader
 # 路由规则
 loaders +='''
-  classpath:   webit.script.loaders.impl.ClasspathLoader-root
-  classpath2:  webit.script.loaders.impl.ClasspathLoader-root2
-  /sub/path    webit.script.loaders.impl.ClasspathLoader-root
-  str:         webit.script.loaders.impl.StringLoader
+  classpath:   classpathLoader-root
+  classpath2:  classpathLoader-root2
+  /sub/path    classpathLoader-root
+  str:         stringLoader
+  code:        codeLoader
 '''
 ~~~~~
 
-> 以上面的配置为例："classpath:/a.wit","/sub/path/a.wit" 都将会使用"ClasspathLoader-root"加载"/a.wit"； "str:var a =1;"将会作为字符串模版被加载为"var a =1;"；"classpath2:/b.wit" 将会使用"ClasspathLoader-root2"进行加载，其余的如 "/a.wit" "/b/sub/path/a.wit" 会使用缺省的"ClasspathLoader" 进行加载
+> 以上面的配置为例："classpath:/a.wit","/sub/path/a.wit" 都将会使用"classpathLoader"加载"/a.wit"； "code:var a =1;"将会作为字符串模版被加载为"var a =1;"；"classpath2:/b.wit" 将会使用"classpathLoader-root2"进行加载，其余的如 "/a.wit" "/b/sub/path/a.wit" 会使用缺省的"classpathLoader" 进行加载
 
-### 延迟模版过期检查：LazyLoader
+### 延迟模版过期检查：lazyLoader
 
-### 简单的安全过滤：SimpleSecurityLoader
+> 可以包裹一个普通loader，并设置一定时间内不检查更新（使用一些检查成本较高的模板时非常有用）
 
+### 简单的安全过滤：simpleSecurityLoader
+
+> 可以包裹一个普通loader，并设置安全名单 
 
 ## 全局常量/变量/函数注册
 
-> 首先，继承接口GlobalRegister（如果需要Engine，可以同时继承接口Initable）
+> 首先，继承接口GlobalRegister
 
 > 然后在方法`void regist(GlobalManager manager)`中进行注册
 
@@ -314,12 +344,12 @@ public void regist(final GlobalManager manager) {
 	constBag.set("substring", this.nativeFactory.createNativeMethodDeclare(String.class, "substring", new Class[]{int.class, int.class}));
 	
 	//全局自定函数
-    constBag.set("is_bool", new MethodDeclare() {
+  constBag.set("is_bool", new MethodDeclare() {
 
-        public Object invoke(Context context, Object[] args) {
-            return ArrayUtil.get(args, 0, null) instanceof Boolean;
-        }
-    });
+      public Object invoke(Context context, Object[] args) {
+          return ArrayUtil.get(args, 0, null) instanceof Boolean;
+      }
+  });
 }
 ~~~~~
 
@@ -363,7 +393,7 @@ registers+= my.pkg.MyGlobalRegister
 #    com.mouse
 #    com.cat.tom
 
-[webit.script.security.impl.DefaultNativeSecurityManager]
+[defaultNativeSecurity]
 list='''
   com.dog
   com.cat
@@ -374,5 +404,5 @@ list='''
 ~~~~~
 
 
-[default_config]: https://github.com/zqq90/webit-script/blob/master/webit-script/src/main/resources/webit-script-default.props
+[default_config]: https://github.com/febit/wit/blob/master/wit-core/src/main/resources/default.wim
 [jodd_props_doc]: http://jodd.org/doc/props.html
