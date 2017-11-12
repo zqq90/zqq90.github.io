@@ -22,42 +22,42 @@ Hello ${name || "friend"}
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-core</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 
 <!-- 扩展工具包 -->
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-tools</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 
 <!-- Spring MVC 3.x 扩展包 -->
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-springmvc3</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 
 <!-- Jodd Madvoc 3.5+ 扩展包 -->
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-jodd3</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 
 <!-- Struts 2.x 扩展包 -->
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-struts2</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 
 <!-- JFinal 扩展包 -->
 <dependency>
   <groupId>org.febit.wit</groupId>
   <artifactId>wit-jfinal</artifactId>
-  <version>2.0.0-beta</version>
+  <version>2.3.0-beta</version>
 </dependency>
 ~~~~~
 
@@ -76,8 +76,8 @@ Hello ${name || "friend"}
 + [github-issue][new_issue]
 
 
-[jar]: http://central.maven.org/maven2/org/febit/wit/wit-core/2.0.0-beta/wit-core-2.0.0-beta.jar
-[sources]: http://central.maven.org/maven2/org/febit/wit/wit-core/2.0.0-beta/wit-core-2.0.0-beta-sources.jar
+[jar]: http://central.maven.org/maven2/org/febit/wit/wit-core/2.3.0-beta/wit-core-2.3.0-beta.jar
+[sources]: http://central.maven.org/maven2/org/febit/wit/wit-core/2.3.0-beta/wit-core-2.3.0-beta-sources.jar
 
 [github_wit]: https://github.com/febit/wit
 [osc_wit]: http://git.oschina.net/zqq90/webit-script

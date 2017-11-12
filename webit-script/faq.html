@@ -50,31 +50,35 @@
   <p>1.在公共模板定义一个 layout 函数</p>
 </blockquote>
 
-<p>```js
-&lt;%
+<pre class="brush: js;">&lt;%
 var layout=(nested)-&gt;{ // A function
-%&gt;</p>
-<html>
-    <body>
+%&gt;
+&lt;html&gt;
+    &lt;body&gt;
 	&lt;% nested(); %&gt;
-    </body>
-</html>
-<p>&lt;%
+    &lt;/body&gt;
+&lt;/html&gt;
+&lt;%
 }; //end layout
 %&gt;
-```
-&gt; 2.使用import导入函数layout</p>
+</pre>
+
+<blockquote>
+  <p>2.使用import导入函数layout</p>
+</blockquote>
 
 <blockquote>
   <p>3.最后，使用layout，传入一个匿名函数作为参数</p>
 </blockquote>
 
-<p><code>js
-&lt;% layout(()-&gt;{ %&gt;
+<pre class="brush: js;">&lt;% layout(()-&gt;{ %&gt;
 Hello Wit!
 &lt;% }); %&gt;
-</code>
-&gt; 技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
+</pre>
+
+<blockquote>
+  <p>技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥</p>
+</blockquote>
 
 <h3 id="native">4. 如何理解 Native？</h3>
 <blockquote>
@@ -85,7 +89,7 @@ native 得到的是对java函数/字段的引用。
 </blockquote>
 </div>
 <div class="footer">
-版权所有 2013-2014 Webit团队.
+版权所有 2013-2017 febit.org
 </div>
 </div>
 <script type="text/javascript" src="js/app.js"></script>

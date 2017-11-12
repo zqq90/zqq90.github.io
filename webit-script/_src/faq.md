@@ -13,7 +13,7 @@
 
 > 1.在公共模板定义一个 layout 函数
 
-```js
+~~~~~js
 <%
 var layout=(nested)->{ // A function
 %>
@@ -25,16 +25,18 @@ var layout=(nested)->{ // A function
 <%
 }; //end layout
 %>
-```
+~~~~~
+
 > 2.使用import导入函数layout
 
 > 3.最后，使用layout，传入一个匿名函数作为参数
 
-```js
+~~~~~js
 <% layout(()->{ %>
 Hello Wit!
 <% }); %>
-```
+~~~~~
+
 > 技巧：您可以定义多个nested，也可以带其他参数，这个任凭您的发挥
 
 ### 4. 如何理解 Native？

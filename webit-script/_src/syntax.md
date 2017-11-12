@@ -54,7 +54,9 @@ static  instanceof  class  final
 
 ### 语句
 
-+ 结尾分号不能省略
++ 支持行尾分号(2.2.0 后), 行内的不支持省略
+
+> 可设置 `engine.looseSemicolon=false` 强制不允许省略分号
 
 ### 作用域(代码段) `{ }`
 
@@ -153,7 +155,11 @@ var y = false;
 #### 带初始值的数组
 
 ~~~~~javascript
-var array = [1, "a string", book];
+var array = [
+    1,
+    "a string",
+    book,   // 支持最后一个元素冗余逗号
+];
 var item;
 item = array[0];
 item = array[1];
@@ -165,13 +171,19 @@ array[0] = "a new value";
 
 ~~~~~javascript
 // 引入生成数组的 native 方法
-var new_int_array = native int [];
-var new_Object_array = native Object [];
-var new_DateTime_array = native java.util.DateTime [];
+var new_int_array = native [] int;
+var new_Object_array = native [] Object;
+var new_DateTime_array = native [] java.util.DateTime;
+
+// 或使用方法引用
+
+var new_int_array2 = int[]::new;
 
 //得到定长数组
 var int_array = new_int_array(5); //长度为5 的int数组
 var objects = new_Object_array(5);//长度为5 的Object数组
+var int_array2 = new_int_array2(4); //长度为4 的int数组
+var int_array3 = int[]::new(4); //长度为4 的int数组
 
 var a;
 a = objects[4];
@@ -202,6 +214,21 @@ map["key"] = "a string value";
 var value = map[1];
 value = map["2"];
 value = map["key"];
+
+var id = "9527"
+var name = "Mr. T"
+var map = {
+    id,    // 只提供现有的变量名, 取名作为key, 取值作为值, 等同于 map["id"] = id
+    name,  // 同上, 等同于 等同于 map["name"] = name
+    nickname: "wit",  // 标识符作为 key, 提供的值作为值
+    1 : "a",   // 直接量作为 key
+    "1": "b",  // 同上
+    '1': "c",  // 同上
+    -1 : "d",  // 同上
+    [ -1-1 ] : "e",   // 表达式作为 key, 使用 [] 内的表达式的结果作为key, 等同于 map[-1-1] = "e"
+    "x-y-z" : "XYZ",  // 支持最后一个元素冗余逗号
+};
+
 ~~~~~
 
 ### Java对象
@@ -247,6 +274,9 @@ list.~addAdd(list2);
 ~~~~~javascript
 var now = native java.lang.System.currentTimeMillis();
 echo now();
+echo "\n";
+// 或者使用方法引用
+echo java.lang.System::currentTimeMillis();
 ~~~~~
  
 #### 访问公共静态字段
@@ -283,7 +313,7 @@ var myFunc = function(arg1, arg2){
 ~~~~~
 
 
-#### 导入Java内的 方法
+#### 导入 Java 内的 方法
 
 + 仅可导入公共类的公共方法, 包括静态方法 和 成员方法
 + 可使用`@import` 导入类名 或者包名 用法同Java里的 `import`, 以简化类名输入
@@ -325,7 +355,7 @@ var book;
 {
 echo "a String";
 >${book.name} <
-} => out; //不要忘了分号！！！
+} => out;
 // "a String" 以及 book.name 都将输出到 out
 
 var out;
@@ -360,10 +390,6 @@ import "book-list-"+ style  +".wit";
 var func = function(){}; 
 var book;
 import "book-head.wit"  {"book": book, "func":func};
-//传入Map 变量作为参数
-var map =  {"book": book, "func":func}；
-map["one"] = 1; 
-import "book-head.wit"  {map};
 //导出指定变量
 var a;
 var b;
@@ -538,5 +564,25 @@ x -> {return x > 2 || x < 8;};
 //注意： 你可能会发现，这里会有一个歧义，实际上是个返回一个空map的函数, 而不是一个空函数
 ()->{};
 ~~~~~
- 
+
+### 模板字符串
+
++ 插值是个表达式
++ 不能嵌套
++ 可以是多行
++ 换行符同样可以使用 `\` 转义
+
+~~~~~js
+
+var id=9527, name="Mr Tang";
+var jobs = {
+  9527: "Master"
+};
+
+var str = `awesome\t\n template
+${1+2}, ${id}, ${name}, ${jobs[id]}${(()->",")()}
+${((name)->{ var map={func:"bala..bala..bala"}; return "nested function: " + name + " - " + map[name]})("func")}
+.`
+~~~~~
+
 ### 正在完善。。。

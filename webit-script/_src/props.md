@@ -81,7 +81,11 @@ encoding=${DEFAULT_ENCODING}
 # 这个继承关系可以在以后被覆盖，无状态，不会有之前的继承参数
 # 例如 改成 [loader :servletLoader]
 [loader :routeLoader]
+# 日志组件的实现
 [logger :simpleLogger]
+# 更改日志组件为 slf4j
+[logger :slf4jLogger]
+
 [textStatement :simpleTextStatement]
 
 # 下面你可以当做是定义了别名， 以后就可以使用别名了，不用写包名，是不是很省劲
@@ -209,11 +213,6 @@ lib-cache.wim
 	<td>engine.shareRootData</td>
 	<td>Boolean</td>
 	<td>对子模版共享传入的参数</td>
-</tr>
-<tr>
-	<td>engine.logger</td>
-	<td>类型</td>
-	<td>日志输出器</td>
 </tr>
 <tr>
 	<td>routeLoader.defaultLoader</td>
